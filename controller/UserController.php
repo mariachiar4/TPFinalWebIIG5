@@ -40,13 +40,16 @@ class UserController {
         $resultado = $this->userModel->getUsuario($data);
 
         if ($resultado) {
+            $_SESSION["logueado"] = true;
             echo $this->render->render("view/home.php");
+
         } else {
             echo $this->render->render("view/login.php");
         }
     }
 
     public function logout(){ 
+        $_SESSION = array();
         session_destroy();
         
         echo $this->render->render("view/login.php");
