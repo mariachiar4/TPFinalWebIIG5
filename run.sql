@@ -1,4 +1,5 @@
 CREATE DATABASE tpfinalpw2grupo5;
+USE tpfinalpw2grupo5;
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
