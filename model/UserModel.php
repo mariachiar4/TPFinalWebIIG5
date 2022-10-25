@@ -14,10 +14,11 @@ class UserModel
         $email = $data["email"];
         $password = $data["password"];
 
-        $usuarioEncontrado = $this->database->query("SELECT * FROM usuarios WHERE email = '$email' ");
+        $usuarioEncontrado = $this->database->query("SELECT * FROM validacion WHERE email = '$email' ");
         
         if (count($usuarioEncontrado) === 0){
-            return $this->database->execute("INSERT INTO usuarios VALUES (null, '$nombre', '$email', null, null, '$password')") === 1 ? "registrado" : "error"; 
+            $usuarioAgregado = $this->database->execute("INSERT INTO usuarios VALUES (null, '$nombre', null, null)") === 1 ? "registrado" : "error"; 
+            if($usuarioAgregado) $this->database->execute("INSERT INTO validacion VALUES ('$email', '$password', null, )") === 1 ? "registrado" : "error";
         } 
         return "usuarioExistente";
     }
