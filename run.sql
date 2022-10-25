@@ -1,5 +1,5 @@
-CREATE DATABASE tpfinalpw2grupo5;
-USE tpfinalpw2grupo5;
+CREATE DATABASE infonete;
+USE infonete;
 
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -29,7 +29,7 @@ CREATE TABLE `publicacion` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `nombre` varchar(50) NOT NULL,
   `tipo_catalogo` int(50) NOT NULL,
-  `precio_suscripcion` double DEFAULT NOT NULL
+  `precio_suscripcion` double NOT NULL
 );
 CREATE TABLE `edicion` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,

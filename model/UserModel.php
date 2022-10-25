@@ -17,8 +17,8 @@ class UserModel
         $usuarioEncontrado = $this->database->query("SELECT * FROM validacion WHERE email = '$email' ");
         
         if (count($usuarioEncontrado) === 0){
-            $usuarioAgregado = $this->database->execute("INSERT INTO usuarios VALUES (null, '$nombre', null, null)") === 1 ? "registrado" : "error"; 
-            if($usuarioAgregado) $this->database->execute("INSERT INTO validacion VALUES ('$email', '$password', null, )") === 1 ? "registrado" : "error";
+            $usuarioAgregado = $this->database->execute("INSERT INTO usuarios VALUES (null, '$nombre', null, null, '$email')") === 1 ? "registrado" : "error"; 
+            if($usuarioAgregado > 0) $this->database->execute("INSERT INTO validacion VALUES ('$email', '$password', null, )") === 1 ? "registrado" : "error";
         } 
         return "usuarioExistente";
     }
