@@ -18,6 +18,22 @@ class UserController {
         $data["nombre"] = $_POST["nombre"];
         $data["email"]  = $_POST["email"];
         $data["password"]  = $_POST["password"];
+        $data["lat"]  = 10.23;
+        $data["lon"]  = 500.00;
+        
+        $errores_validacion = false;
+        foreach($data as $clave => $valor){
+
+            if($errores_validacion){
+                break;
+            }
+            
+            $errores_validacion = $this->validacion($clave, $valor);
+            echo "$clave -> $errores_validacion";
+        }
+        return;
+
+
 
         $resultadoRegistro = $this->userModel->insertarUsuario($data);
 
@@ -27,6 +43,26 @@ class UserController {
         } else {
             echo $this->render->render("view/registradoError.php", array("error" => $resultadoRegistro) );
         }
+    }
+
+    private function validacion($clave, $valor){
+
+        switch($clave){
+            case "nombre": 
+                $nombre_pattern = '/^[."a-zA-Z0-9- ]{4,50}$/';
+                return preg_match($nombre_pattern, $valor) == 1 ? false : true;
+            case "email": 
+                $email_pattern = "/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/";
+                return preg_match($email_pattern, $valor) == 1 ? false : true;
+            case "password": 
+                /*al menos un numero, al menos un caracter especial, al menos una letra, al menos 8 caracteres, maximo 16 caracteres*/
+                $password_pattern = '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&.,()"=_])[A-Za-z\d@$!%*#?&.,()"=_]{8,16}$/';
+                return preg_match($password_pattern, $valor) == 1 ? false : true;
+            case "lat": 
+            case "lon":
+                return !empty($valor) ? (is_double($valor) ? false : true) : true;                
+        }
+
     }
 
     public function getLogin(){

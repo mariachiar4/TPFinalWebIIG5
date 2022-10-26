@@ -13,12 +13,17 @@ class UserModel
         $nombre = $data["nombre"];
         $email = $data["email"];
         $password = $data["password"];
+        $password = !empty($password) ? md5($password) : null;
+        $lat = $data["lat"];
+        $lon = $data["lon"];
+        $token = bin2hex(random_bytes(16)); 
 
         $usuarioEncontrado = $this->database->query("SELECT * FROM validacion WHERE email = '$email' ");
         
         if (count($usuarioEncontrado) === 0){
-            $usuarioAgregado = $this->database->execute("INSERT INTO usuarios VALUES (null, '$nombre', null, null, '$email')") === 1 ? "registrado" : "error"; 
-            if($usuarioAgregado > 0) $this->database->execute("INSERT INTO validacion VALUES ('$email', '$password', null, )") === 1 ? "registrado" : "error";
+            $usuarioAgregado = $this->database->execute("INSERT INTO usuario VALUES (null, '$nombre', $lat, $lon, '$email')"); 
+            if($usuarioAgregado > 0) return $this->database->execute("INSERT INTO validacion VALUES ('$email', '$password', '$token', 0)") === 1 ? "registrado" : "error";
+        
         } 
         return "usuarioExistente";
     }
