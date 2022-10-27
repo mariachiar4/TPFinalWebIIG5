@@ -27,17 +27,11 @@ class UserController {
         
         $errores_validacion = false;
         foreach($data as $clave => $valor){
-
             if($errores_validacion){
                 break;
             }
-            
             $errores_validacion = $this->validacion($clave, $valor);
-            echo "$clave -> $errores_validacion";
         }
-        return;
-
-
 
         $resultadoRegistro = $this->userModel->insertarUsuario($data);
 

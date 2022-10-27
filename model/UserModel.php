@@ -13,7 +13,7 @@ class UserModel
         $nombre = $data["nombre"];
         $email = $data["email"];
         $password = $data["password"];
-        $password = !empty($password) ? md5($password) : null;
+        $hash = !empty($password) ? md5($password) : null;
         $lat = $data["lat"];
         $lon = $data["lon"];
         $token = bin2hex(random_bytes(16)); 
@@ -22,7 +22,7 @@ class UserModel
         
         if (count($usuarioEncontrado) === 0){
             $usuarioAgregado = $this->database->execute("INSERT INTO usuario VALUES (null, '$nombre', $lat, $lon, '$email')"); 
-            if($usuarioAgregado > 0) return $this->database->execute("INSERT INTO validacion VALUES ('$email', '$password', '$token', 0)") === 1 ? "registrado" : "error";
+            if($usuarioAgregado > 0) return $this->database->execute("INSERT INTO validacion VALUES ('$email', '$hash', '$token', 0)") === 1 ? "registrado" : "error";
         
         } 
         return "usuarioExistente";
@@ -31,8 +31,10 @@ class UserModel
     public function getUsuario($data){
         $email = $data["email"];
         $password = $data["password"];
+        $hash = !empty($password) ? md5($password) : null;
 
-        $usuarioEncontrado = $this->database->query("SELECT * FROM usuario WHERE email = '$email' AND password = '$password' ");
+        //comparamos el hash de la contraseña en bd con hash desde el request
+        $usuarioEncontrado = $this->database->query("SELECT * FROM validacion WHERE email = '$email' AND contrasena = '$hash' ");
 
         return count($usuarioEncontrado) !== 0 ? true : false;
 
