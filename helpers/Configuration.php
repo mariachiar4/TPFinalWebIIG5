@@ -4,8 +4,10 @@ include_once("helpers/Render.php");
 include_once("helpers/UrlHelper.php");
 
 include_once("model/UserModel.php");
+include_once("model/PublicacionModel.php");
 
 include_once("controller/UserController.php");
+include_once("controller/PublicacionController.php");
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
@@ -30,6 +32,16 @@ class Configuration{
     public function getUserController(){
         $userModel = $this->getUserModel();
         return new UserController($userModel, $this->getRender());
+    }
+
+    public function getPublicacionModel(){
+        $database = $this->getDatabase();
+        return new PublicacionModel($database);
+    }
+
+    public function getPublicacionController(){
+        $publicacionModel = $this->getPublicacionModel();
+        return new PublicacionController($publicacionModel, $this->getRender());
     }
 
     private function getConfig(){
