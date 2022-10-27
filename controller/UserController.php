@@ -60,7 +60,6 @@ class UserController {
             case "lon":
                 return !empty($valor) ? (is_double($valor) ? false : true) : true;                
         }
-
     }
 
     public function login(){
@@ -78,7 +77,10 @@ class UserController {
             echo $this->render->render("view/home.php");
 
         } else {
-            echo $this->render->render("view/login.php");
+            $_SESSION = array();
+            session_destroy();
+            
+            echo $this->render->render("view/login.php",array("error" => "Usuario o Contraseña Incorrecta"));
         }
     }
 

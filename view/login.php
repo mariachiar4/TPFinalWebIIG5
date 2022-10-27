@@ -8,5 +8,6 @@
     <p><input name="email" type="email" placeholder="Email"></p>
     <p><input name="password" type="password" placeholder="Password"></p>
     <p><input type="submit" value="Login"></p>
+    <p class="error">{{error}}</p>
   </form>
 </div>
