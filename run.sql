@@ -28,9 +28,90 @@ VALUES ('Revista'),
 CREATE TABLE `publicacion` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `nombre` varchar(50) NOT NULL,
-  `tipo_catalogo` int(50) NOT NULL,
-  `precio_suscripcion` double NOT NULL
+  `descripcion` varchar(250) NOT NULL,
+  `tipo_catalogo` int(10) NOT NULL,
+  `precio_suscripcion` double NOT NULL,
+  `facebook_url` varchar(70) NOT NULL,
+  `instagram_url` varchar(70) NOT NULL,
+  `twitter_url` varchar(70) NOT NULL,
+  `link_url` varchar(70) NOT NULL
 );
+
+INSERT INTO `publicacion`( `nombre`, `descripcion`, `tipo_catalogo`, `precio_suscripcion`,`facebook_url`,`instagram_url`,`twitter_url`,`link_url`) 
+VALUES ('La Nacion',
+      'LA NACION ofrece las últimas noticias, fotos y videos de la Argentina y el mundo. Política, economía, deportes y toda la información en tiempo real.',
+      2,
+      500.00,
+      'https://www.facebook.com/lanacion',
+      'https://www.instagram.com/lanacioncom/',
+      'https://twitter.com/LANACION',
+      'https://www.lanacion.com.ar/'
+      ), 
+      ('Billiken',
+      'Billiken es una revista infantil argentina de aparición mensual, la más antigua de habla castellana en la actualidad.​​ Fue creada por el periodista Constancio C. Vigil.',
+      1,
+      350.00,
+      'https://www.facebook.com/BILLIKENONLINE',
+      'https://www.instagram.com/billikenoficial/',
+      'https://twitter.com/BillikenOnline',
+      'https://billiken.lat/'
+      ),
+      ('Para Ti',
+      'Para Ti es una revista mensual argentina dedicada a la mujer, creado por el periodista Constancio C. Vigil. El primer número fue publicado el 16 de mayo de 1922 a través de Editorial Atlántida.',
+      1,
+      400.00,
+      'https://www.facebook.com/parationline',
+      'https://www.instagram.com/paratirevista/',
+      'https://twitter.com/ParaTiOnline',
+      'https://www.parati.com.ar/'
+      ),
+      ('Gente',
+      'Gente es una revista argentina, perteneciente a Editorial Atlántida. Dedicada a los personajes del espectáculo y la farándula, es una de las mayores revistas del corazón en Argentina.',
+      1,
+      550.00,
+      'https://www.facebook.com/GENTEONLINE',
+      'https://www.instagram.com/revistagenteok/',
+      'https://twitter.com/genteonline',
+      'https://www.gente.com.ar/'
+      ),
+      ('Puro Diseño',
+      'Es la mayor multiplataforma de difusión, venta y muestra de diseño de Argentina y Latinoamérica. Desde hace 20 años genera encuentros y alianzas estratégicas.',
+      1,
+      700.50,
+      'https://www.facebook.com/purodisenolat',
+      'https://www.instagram.com/feriapurodiseno/',
+      'https://twitter.com/PuroDisenoLat',
+      'https://purodiseno.lat/'
+      ),
+      ('Clarín',
+      'Clarín es un periódico argentino de tendencia conservadora con sede en la ciudad de Buenos Aires. Fue fundado el 28 de agosto de 1945, por Roberto Noble.',
+      2,
+      400.00,
+      'https://www.facebook.com/clarincom/',
+      NULL,
+      'https://twitter.com/clarincom',
+      'https://www.clarin.com/'
+      ),
+      ('Tiempo Argentino',
+      'Tiempo Argentino es un diario dominical de Argentina, editado en la ciudad de Buenos Aires que pertenece a la cooperativa de trabajadores "Por Más Tiempo"',
+      2,
+      350.99,
+      'https://www.facebook.com/DiarioTiempoArgentino',
+      'https://www.instagram.com/tiempoarg/',
+      'https://twitter.com/tiempoarg',
+      'https://www.tiempoar.com.ar/'
+      ),
+      ('Olé',
+      'Olé es un diario argentino de deportes, editado en Buenos Aires desde el 23 de mayo de 1996, por el Grupo Clarín en formato tabloide.',
+      2,
+      350.99,
+      'https://www.facebook.com/diarioole',
+      'https://www.instagram.com/diario.ole/',
+      'https://twitter.com/diarioole',
+      'https://www.ole.com.ar/'
+      );
+
+
 CREATE TABLE `edicion` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `nombre` varchar(50) NOT NULL,
