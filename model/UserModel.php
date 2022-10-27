@@ -39,14 +39,4 @@ class UserModel
         return count($usuarioEncontrado) !== 0 ? true : false;
 
     }
-
-
- /*    public function getUsers(){
-        return $this->database->query("SELECT * FROM users");
-    }
-
-    public function getCancion($id){
-        $sql = "SELECT * FROM canciones where idCancion = " . $id;
-        return $this->database->query($sql);
-    } */
 }

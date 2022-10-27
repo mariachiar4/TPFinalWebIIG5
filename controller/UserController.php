@@ -9,10 +9,10 @@ class UserController {
         $this->render = $render;
     }
 
-
+/* 
     public function execute(){
         echo $this->render->render("view/home.php");
-    }
+    } */
 
     public function registrarse(){
         echo $this->render->render("view/register.php" );
@@ -44,7 +44,6 @@ class UserController {
     }
 
     private function validacion($clave, $valor){
-
         switch($clave){
             case "nombre": 
                 $nombre_pattern = '/^[."a-zA-Z0-9- ]{4,50}$/';
@@ -74,12 +73,11 @@ class UserController {
 
         if ($resultado) {
             $_SESSION["logueado"] = true;
-            echo $this->render->render("view/home.php");
+            header('Location: /publicacion'); //CONSULTAR AL PROFESOR SI ESTO ESTA CORRECTO COMO ALTERNATIVA PARA PODER LLAMAR A UN SEGUNDO CONTROLLER
 
         } else {
             $_SESSION = array();
             session_destroy();
-            
             echo $this->render->render("view/login.php",array("error" => "Usuario o Contraseña Incorrecta"));
         }
     }
@@ -89,18 +87,5 @@ class UserController {
         session_destroy();
         
         echo $this->render->render("view/login.php");
-
     }
-
-
-  /*   public function execute(){
-        $data["canciones"] = $this->songModel->getCanciones();
-        echo $this->render->render("view/songView.php", $data);
-    }
-
-    public function description(){
-        $id = $_GET["id"];
-        $data["cancion"] = $this->songModel->getCancion($id);
-        echo $this->render->render("view/songDescriptionView.php", $data);
-    } */
 }
