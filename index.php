@@ -6,7 +6,7 @@ $configuration = new Configuration();
 
 $urlHelper = $configuration->getUrlHelper();
 $module = $urlHelper->getModuleFromRequestOr("user");
-$action = $urlHelper->getActionFromRequestOr("execute");
+$action = $urlHelper->getActionFromRequestOr("login");
 
 
 $router = $configuration->getRouter();

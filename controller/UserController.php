@@ -11,10 +11,14 @@ class UserController {
 
 
     public function execute(){
-        echo $this->render->render("view/register.php");
+        echo $this->render->render("view/home.php");
     }
 
     public function registrarse(){
+        echo $this->render->render("view/register.php" );
+    }
+
+    public function procesarRegistro(){
         $data["nombre"] = $_POST["nombre"];
         $data["email"]  = $_POST["email"];
         $data["password"]  = $_POST["password"];
@@ -65,11 +69,11 @@ class UserController {
 
     }
 
-    public function getLogin(){
+    public function login(){
         echo $this->render->render("view/login.php" );
     }
     
-    public function login(){ 
+    public function procesarLogin(){ 
         $data["email"]  = $_POST["email"];
         $data["password"]  = $_POST["password"];
 

@@ -4,7 +4,7 @@
   
   <h2 class="login-header">Registro</h2>
 
-  <form class="login-container" action="/user/registrarse" method="POST" enctype="application/x-www-form-urlencoded">
+  <form class="login-container" action="/user/procesarRegistro" method="POST" enctype="application/x-www-form-urlencoded">
     <p><input name="nombre" type="text" placeholder="Nombre"></p>
     <p><input name="email" type="email" placeholder="Email"></p>
     <p><input name="password" type="password" placeholder="Password"></p>

@@ -32,7 +32,7 @@ class UserModel
         $email = $data["email"];
         $password = $data["password"];
 
-        $usuarioEncontrado = $this->database->query("SELECT * FROM usuarios WHERE email = '$email' AND password = '$password' ");
+        $usuarioEncontrado = $this->database->query("SELECT * FROM usuario WHERE email = '$email' AND password = '$password' ");
 
         return count($usuarioEncontrado) !== 0 ? true : false;
 
