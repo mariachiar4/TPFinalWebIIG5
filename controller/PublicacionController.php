@@ -22,6 +22,7 @@ class PublicacionController {
 
         $publicacion = $this->publicacionModel->getPublicacion($nombre_publicacion);
 
+        echo $this->render->render("view/publicacion.php",array("publicacion" => $publicacion));
 
     }
 }
