@@ -123,6 +123,7 @@ VALUES ('La Nacion',
 
 CREATE TABLE `edicion` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  /* duda -> no deberia estar el id_publicacion ? porque como unimos eso? o por ejemplo las secciones como unirlas con las publicaciones? :O */
   `nombre` varchar(50) NOT NULL,
   `fecha_creacion` datetime NOT NULL,
   `precio` double NOT NULL
