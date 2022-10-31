@@ -8,8 +8,8 @@
     
     <div class="cartas-container">
         {{#publicaciones}} 
-        <!-- <a href="/publicacion/getPublicacion/{{nombre}}" target="_blank"> -->
-            <div class="carta"  style='background-color:{{color}}'> 
+        <div class="carta"  style='background-color:{{color}}'> 
+            <a class="carta-link" href="/publicacion/getPublicacion/id={{id}}" target="_blank">
                 <h3 class="carta-titulo">{{nombre}}</h3>
                 <p class="carta-descripcion">{{descripcion}}</p>
                 <div class="carta-sociales-container">
@@ -18,8 +18,8 @@
                     <a target="_blank" href='{{twitter_url}}' class="carta-social-link"><img src="/public/img/twitter.png"/></a>
                     <a target="_blank" href='{{link_url}}' class="carta-social-link"><img src="/public/img/link.png"/></a>
                 </div>
-            </div> 
-        <!-- </a> -->
+            </a>
+        </div> 
         {{/publicaciones}}
     </div>
 </div>
