@@ -9,7 +9,6 @@ class Router{
     }
 
     public function executeActionFromModule($action, $module){
-
         $isLogueado = isset($_SESSION["logueado"]) ? true : false;
 
         if ($isLogueado){ // si esta logueado : dejar acceder a los checks de controllers y metodos
@@ -30,14 +29,14 @@ class Router{
     }
 
     private function getControllerFrom($module){
-          $controllerName = "get" . ucfirst($module) . "Controller";
-          $validController = method_exists($this->configuration, $controllerName) ?$controllerName : "getPublicacionController";
-          return call_user_func(array($this->configuration, $validController));
+        $controllerName = "get" . ucfirst($module) . "Controller";
+        $validController = method_exists($this->configuration, $controllerName) ? $controllerName : "getPublicacionController";
+        return call_user_func(array($this->configuration, $validController));
     }
 
     private function executeMethodFromController($controller, $method){
 
-        $validMethod = method_exists($controller, $method) ?$method : "execute";
+        $validMethod = method_exists($controller, $method) ? $method : "execute";
         call_user_func(array($controller, $validMethod));
     }
 }

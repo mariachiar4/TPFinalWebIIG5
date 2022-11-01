@@ -18,9 +18,8 @@ class PublicacionController {
 
     public function getPublicacion(){
         $id = $_GET["id"];
-        $publicacion = $this->publicacionModel->getPublicacion($id);
+        $secciones= $this->publicacionModel->getSecciones($id);
 
-        echo $this->render->render("view/publicacion.php",array("publicacion" => $publicacion));
-
+        echo $this->render->render("view/publicacion.php",array("secciones" => $secciones));
     }
 }

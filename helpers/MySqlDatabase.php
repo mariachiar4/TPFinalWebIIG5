@@ -27,4 +27,8 @@ class MysqlDatabase{
         mysqli_query($this->connection, $sql);
         return $this->connection->affected_rows;
     }
+    public function execute_last_id($sql){
+        mysqli_query($this->connection, $sql);
+        return $this->connection->insert_id;
+    }
 }

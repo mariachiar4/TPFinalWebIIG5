@@ -2,10 +2,12 @@
 
 class UserController {
     private $userModel;
+    private $publicacionModel;
     private $render;
 
-    public function __construct($userModel,$render){
+    public function __construct($userModel, $publicacionModel, $render){
         $this->userModel = $userModel;
+        $this->publicacionModel = $publicacionModel;
         $this->render = $render;
     }
 
@@ -87,5 +89,15 @@ class UserController {
         session_destroy();
         
         echo $this->render->render("view/login.php");
+    }
+
+    public function admin(){
+        echo $this->render->render("view/panel.php");
+    }
+    
+    public function crearEdicion(){
+        $publicaciones = $this->publicacionModel->getPublicaciones();
+        $secciones = $this->publicacionModel->getSecciones();
+        echo $this->render->render("view/crearEdicion.php", array("publicaciones" => $publicaciones, "secciones" => $secciones));
     }
 }
