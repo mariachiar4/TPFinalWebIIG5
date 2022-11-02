@@ -33,8 +33,7 @@ class Configuration{
 
     public function getUserController(){
         $userModel = $this->getUserModel();
-        $publicacionModel = $this->getPublicacionModel();
-        return new UserController($userModel, $publicacionModel, $this->getRender());
+        return new UserController($userModel, $this->getRender());
     }
 
     public function getPublicacionModel(){
@@ -53,8 +52,9 @@ class Configuration{
     }
 
     public function getEdicionController(){
+        $publicacionModel = $this->getPublicacionModel();
         $edicionModel = $this->getEdicionModel();
-        return new EdicionController($edicionModel, $this->getRender());
+        return new EdicionController($edicionModel, $publicacionModel, $this->getRender());
     }
 
     private function getConfig(){

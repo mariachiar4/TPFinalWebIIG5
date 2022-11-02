@@ -10,3 +10,26 @@ body {
   justify-content: center;
   color: red;
 }
+
+.container-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.margin-top {
+  margin-top: 1rem;
+}
+
+.link-admin {
+  color: white;
+  font-weight: 500;
+  margin-left: 1rem;
+}
+
+.titulo-admin-container {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+  margin-left: 0.6rem;
+}

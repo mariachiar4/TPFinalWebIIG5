@@ -1,3 +1,4 @@
+{{> header}}
 <section>
     <h2>Crear Edición</h2>
     <form action="/edicion/procesarEdicion" method="post" enctype="application/x-www-form-urlencoded">

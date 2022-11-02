@@ -22,10 +22,12 @@ class EdicionModel
                 break;
             }
             $error = ($this->database->execute("INSERT INTO edicion_seccion VALUES (null, $id_edicion, $id_seccion)")) == 1 ? false : true;
-            echo $error;
         }
-
     }
+
+    public function getEdicionesDePublicacion() {
+        return $this->database->query("SELECT e.id, p.nombre as nombre_publicacion ,e.nombre as nombre_edicion, fecha_creacion, precio  FROM edicion e JOIN publicacion p ON e.id_publicacion = p.id;");
+    } 
 
     public function getEdiciones(){
         return $this->database->query("SELECT * FROM edicion");
@@ -33,5 +35,13 @@ class EdicionModel
 
     public function getEdicion($id){
         return $this->database->query("SELECT * FROM edicion WHERE id = '$id'");
+    }
+
+    public function eliminarEdicion($id){
+        return  $this->database->execute("DELETE FROM edicion WHERE id = '$id'");
+    }
+
+    public function editarEdicion($id, $nombre_edicion, $precio){
+        return  $this->database->execute("UPDATE edicion SET nombre = '$nombre_edicion', precio = $precio WHERE id = $id ");
     }
 }
