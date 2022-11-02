@@ -33,3 +33,46 @@ body {
   color: white;
   margin-left: 0.6rem;
 }
+
+.grid-edicion {
+  width: 80%;
+  margin: auto;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  grid-column-gap: 0px;
+  grid-row-gap: 0.5rem;
+}
+
+.contents {
+  display: contents;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.white-title {
+  color: white;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.read-only {
+  border-color: transparent;
+  background-color: #ddd;
+}
+
+@media (max-width: 1400px) {
+  .grid-edicion {
+    width: auto;
+    margin: auto;
+  }
+}
+
+@media (max-width: 700) {
+  .grid-edicion {
+    width: auto;
+    margin: auto;
+  }
+}
