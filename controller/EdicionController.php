@@ -17,9 +17,9 @@ class EdicionController {
         echo $this->render->render("view/edicion/crearEdicion.php", array("publicaciones" => $publicaciones, "secciones" => $secciones));
     }
 
-    public function accionesEdicion(){
+    public function accionesEdicion($notificacion = null){
         $ediciones = $this->edicionModel->getEdicionesDePublicacion();
-        echo $this->render->render("view/edicion/accionesEdicion.php", array("ediciones" => $ediciones));
+        echo $this->render->render("view/edicion/accionesEdicion.php", array("ediciones" => $ediciones, "notificacion" => $notificacion));
     }
     
     public function procesarAccionEdicion(){
@@ -29,12 +29,14 @@ class EdicionController {
       $precio = $_POST["precio"];
         
       if ($accion === "Eliminar"){
-        $this->edicionModel->eliminarEdicion($id);
-        header('Location: /edicion/accionesEdicion');
+        $response = $this->edicionModel->eliminarEdicion($id);
+        $this->accionesEdicion($response === 1 ? "Eliminado Correcto de id: $id" : "No se ha podido eliminar");
+        exit;
+    
     } else if ($accion === "Editar")
-        $this->edicionModel->editarEdicion($id, $nombre_edicion, $precio);
-        header('Location: /edicion/accionesEdicion');
-
+        $response = $this->edicionModel->editarEdicion($id, $nombre_edicion, $precio);
+        $this->accionesEdicion($response === 1 ? "Editado Correcto de id: $id" : "No se ha podido editar");
+        exit;
     }
 
     public function procesarEdicion(){
