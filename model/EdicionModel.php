@@ -21,8 +21,10 @@ class EdicionModel
             if($error){
                 break;
             }
-            $error = $this->database->execute("INSERT INTO edicion_seccion VALUES (null, $id_edicion, $id_seccion)");
+            $error = ($this->database->execute("INSERT INTO edicion_seccion VALUES (null, $id_edicion, $id_seccion)")) == 1 ? false : true;
+            echo $error;
         }
+
     }
 
     public function getEdiciones(){
