@@ -2,9 +2,9 @@
 <section class="container-flex">
     <div class="">
         <h3 class="titulo-admin-container" >Publicacion</h3>
-        <a class="link-admin" href="/publicacion/altaPublicacion">Dar de alta Publicacion</a>
-        <a class="link-admin" href="/publicacion/bajaPublicacion">Dar de baja Publicacion</a>
-        <a class="link-admin" href="/publicacion/modificarPublicacion">Modificar Publicacion</a>
+        <!-- <a class="link-admin" href="/publicacion/altaPublicacion">Dar de alta Publicacion</a>
+        <a class="link-admin" href="/publicacion/bajaPublicacion">Dar de baja Publicacion</a> -->
+        <a class="link-admin" href="/publicacion/accionesPublicacion">Modificar Publicacion</a>
     </div>
 
     <div class="margin-top">

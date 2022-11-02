@@ -89,13 +89,8 @@ class UserController {
         echo $this->render->render("view/login.php");
     }
 
-    public function admin(){
-
-        //publicacion
-        //ediciones
-        
-
-        echo $this->render->render("view/panel.php");
+    public function panelAdmin(){
+        echo $this->render->render("view/panelAdmin.php");
     }
     
   
