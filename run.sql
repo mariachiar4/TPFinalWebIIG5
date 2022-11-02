@@ -35,7 +35,8 @@ CREATE TABLE `publicacion` (
   `instagram_url` varchar(70),
   `twitter_url` varchar(70),
   `link_url` varchar(70),
-  `color` varchar(10) NOT NULL
+  `color` varchar(10) NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT 1
 );
 
 INSERT INTO `publicacion`( `nombre`, `descripcion`, `tipo_catalogo`, `precio_suscripcion`,`facebook_url`,`instagram_url`,`twitter_url`,`link_url`,`color`) 

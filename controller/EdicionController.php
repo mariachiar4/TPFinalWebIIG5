@@ -49,8 +49,8 @@ class EdicionController {
         
         $this->edicionModel->insertarSecciones($ultimo_id_edicion, $id_secciones);
 
-        header('Location: /user/admin');
-        // a la vista de admin
+        header('Location: /user/panelAdmin');
+        exit;
 
     }
 }
