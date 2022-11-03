@@ -26,7 +26,7 @@ class EdicionModel
     }
 
     public function getEdicionesDePublicacion() {
-        return $this->database->query("SELECT e.id, p.nombre as nombre_publicacion ,e.nombre as nombre_edicion, fecha_creacion, precio  FROM edicion e JOIN publicacion p ON e.id_publicacion = p.id;");
+        return $this->database->query("SELECT e.id, p.nombre as nombre_publicacion ,e.nombre as nombre_edicion, fecha_creacion, precio  FROM edicion e JOIN publicacion p ON e.id_publicacion = p.id WHERE p.estado = 1;");
     } 
 
     public function getEdiciones(){

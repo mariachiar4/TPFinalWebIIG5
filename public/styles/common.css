@@ -88,10 +88,24 @@ body {
 .form-label {
   color: white;
 }
+.text-center{
+  text-align: center;
+}
 
 .two-column-grid {
   display: grid;
   grid-template-columns: repeat(3, auto);
+}
+
+.seccion-articulo .form-label{
+  margin-top: 1rem;
+}
+.seccion-articulo input, .seccion-articulo textarea{
+  display: block;
+  border-radius: 8px;
+  width: 100%;
+  border: none;
+
 }
 
 @media (max-width: 1400px) {

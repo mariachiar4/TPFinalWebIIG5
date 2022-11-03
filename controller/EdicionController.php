@@ -51,6 +51,5 @@ class EdicionController {
 
         header('Location: /user/panelAdmin');
         exit;
-
     }
 }
