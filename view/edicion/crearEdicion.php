@@ -1,7 +1,7 @@
 {{> header}}
 <section class="form-container">
     <h2 class="white-title">Crear Edición</h2>
-    <form class="container-flex" action="/articulo/procesarArticulo" method="post" enctype="application/x-www-form-urlencoded">
+    <form class="container-flex" action="/edicion/procesarEdicion" method="post" enctype="application/x-www-form-urlencoded">
         <div class="form-element">
             <label class="form-label" for="id_publicacion">Publicación</label>
             <select  name="id_publicacion" id="id_publicacion">
