@@ -15,7 +15,7 @@
         </div>
         <div class="form-element">
             <!-- Div que tiene que crearse por js al seleccionar la publicacion que queres. -->
-            <label class="form-label" for="id_publicacion">Edicion</label>
+            <label class="form-label" for="id_publicacion">Seccion</label>
             <select name="id_publicacion" id="id_publicacion">
             <option value="">Edicion</option>
             </select>
@@ -53,7 +53,6 @@
     let select_publicaciones = document.getElementById("id_publicacion");
     let id_publicacion = 0;
     select_publicaciones.addEventListener("change", function(evento){
-        console.log("evento ", evento)
         id_publicacion = evento.target.value;
         obtenerSelectSecciones(id_publicacion);
     })
@@ -63,7 +62,7 @@
     function obtenerSelectSecciones(id_publicacion){
         const formData = new FormData();
 
-        let url = "/articulo/obtenerSeccionesSegunPublicacion";
+        let url = "/articulo/procesarSeccionesSegunPublicacion";
 
         formData.append("id_publicacion", id_publicacion);
 

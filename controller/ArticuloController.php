@@ -9,27 +9,29 @@
 class ArticuloController {
     private $articuloModel;
     private $publicacionModel;
+    private $seccionModel;
     private $render;
 
-    public function __construct($articuloModel, $publicacionModel, $render){
+    public function __construct($articuloModel, $seccionModel, $publicacionModel, $render){
         $this->articuloModel = $articuloModel;
+        $this->seccionModel = $seccionModel;
         $this->publicacionModel = $publicacionModel;
         $this->render = $render;
     }
 
     public function crearArticulo(){
-        // necesitamos obtener las publicaciones
         $publicaciones = $this->publicacionModel->getPublicaciones();
 
         echo $this->render->render("view/articulo/crearArticulo.php", array("publicaciones" => $publicaciones));
     }
 
-    public function obtenerSeccionesSegunPublicacion(){
-
-        /* SQL que no anda para traer las secciones de la ultima edicion de la publicacion que elegimos para pasarla por ajax
-        SELECT * FROM seccion 
-        JOIN edicion_seccion ed ON ed.id_edicion = (SELECT e1.id FROM edicion e1  WHERE e1.fecha_creacion = (SELECT MAX(e2.fecha_creacion) FROM edicion e2 where id_publicacion = 1));
-        */
+    public function procesarSeccionesSegunPublicacion(){
+        $id_publicacion = $_POST["id_publicacion"];
+        echo $id_publicacion;
+        $secciones = $this->seccionModel->obtenerSeccionesSegunPublicacion($id_publicacion);
+        var_dump($secciones);
+        return;
+        return json_encode($secciones);
     }
 
     public function procesarArticulo(){

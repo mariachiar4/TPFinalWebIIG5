@@ -8,4 +8,6 @@ class ArticuloModel
     {
         $this->database = $database;
     }
+
+
 }
