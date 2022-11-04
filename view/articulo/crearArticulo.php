@@ -8,16 +8,17 @@
         <div class="form-element">
             <label class="form-label" for="id_publicacion">Publicación</label>
             <select name="id_publicacion" id="id_publicacion">
+                <option value="" disabled selected>Seleccione una publicación</option>
                 {{#publicaciones}}
                     <option value="{{id}}">{{nombre}}</option>
                 {{/publicaciones}}
             </select>
         </div>
-        <div class="form-element">
+        <div class="form-element oculto">
             <!-- Div que tiene que crearse por js al seleccionar la publicacion que queres. -->
-            <label class="form-label" for="id_publicacion">Seccion</label>
-            <select name="id_publicacion" id="id_publicacion">
-            <option value="">Edicion</option>
+            <label class="form-label" for="id_seccion">Sección</label>
+            <select name="id_seccion" id="id_seccion">
+                <option value="" selected disabled>Seleccione una sección</option>
             </select>
         </div>
 
@@ -54,6 +55,7 @@
     let id_publicacion = 0;
     select_publicaciones.addEventListener("change", function(evento){
         id_publicacion = evento.target.value;
+        console.log("id", id_publicacion)
         obtenerSelectSecciones(id_publicacion);
     })
 
@@ -62,17 +64,36 @@
     function obtenerSelectSecciones(id_publicacion){
         const formData = new FormData();
 
-        let url = "/articulo/procesarSeccionesSegunPublicacion";
+        let url = "/seccion/procesarSeccionesSegunPublicacion";
 
         formData.append("id_publicacion", id_publicacion);
-
         fetch(url, {
             method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            //headers: {"Content-Type": "application/x-www-form-urlencoded"},
             body: formData
         })
         .then((response) => response.json())
-        .then((result) => {
-            console.log('Success:', result);
+        .then((secciones) => {
+            console.log(secciones)
+            if(secciones.length > 0){
+                let select_secciones = document.getElementById("id_seccion");
+                let option = "";
+
+                secciones.forEach(seccion =>{
+                    option = document.createElement("option");
+                    option.value = seccion.id;
+                    option.innerText = seccion.nombre;
+                    select_secciones.appendChild(option);
+
+                })
+            }
+
+
+            
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -80,6 +101,7 @@
     }
 
     //inicializamos tinymce para el contenido
+    /*
     tinymce.init({
         selector: '#contenido',
         plugins: [
@@ -89,7 +111,7 @@
             'alignleft aligncenter alignright alignjustify | ' +
             'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
       });
-
+*/
 
 
 

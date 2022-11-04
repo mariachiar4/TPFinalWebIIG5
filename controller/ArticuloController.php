@@ -25,14 +25,7 @@ class ArticuloController {
         echo $this->render->render("view/articulo/crearArticulo.php", array("publicaciones" => $publicaciones));
     }
 
-    public function procesarSeccionesSegunPublicacion(){
-        $id_publicacion = $_POST["id_publicacion"];
-        echo $id_publicacion;
-        $secciones = $this->seccionModel->obtenerSeccionesSegunPublicacion($id_publicacion);
-        var_dump($secciones);
-        return;
-        return json_encode($secciones);
-    }
+
 
     public function procesarArticulo(){
         $id_edicion_seccion = isset($_POST["id_edicion_seccion"]);

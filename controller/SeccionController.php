@@ -13,4 +13,10 @@ class SeccionController {
     public function __construct($seccionModel, $render){
         $this->seccionModel = $seccionModel;
     }
+
+    public function procesarSeccionesSegunPublicacion(){
+        $id_publicacion = $_POST["id_publicacion"];
+        $secciones = $this->seccionModel->obtenerSeccionesSegunPublicacion($id_publicacion);
+        echo json_encode($secciones);
+    }
 }
