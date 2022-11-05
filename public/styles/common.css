@@ -107,7 +107,9 @@ body {
   border: none;
 
 }
-
+.oculto{
+  display: none;
+}
 @media (max-width: 1400px) {
   .grid-edicion {
     width: auto;

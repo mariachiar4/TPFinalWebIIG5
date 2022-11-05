@@ -14,7 +14,7 @@
                 {{/publicaciones}}
             </select>
         </div>
-        <div class="form-element oculto">
+        <div class="form-element oculto" id="id_seccion_container">
             <!-- Div que tiene que crearse por js al seleccionar la publicacion que queres. -->
             <label class="form-label" for="id_seccion">Sección</label>
             <select name="id_seccion" id="id_seccion">
@@ -78,18 +78,19 @@
         })
         .then((response) => response.json())
         .then((secciones) => {
-            console.log(secciones)
+            let seccion_container = document.getElementById("id_seccion_container");
             if(secciones.length > 0){
                 let select_secciones = document.getElementById("id_seccion");
+                seccion_container.classList.remove("oculto");
                 let option = "";
-
                 secciones.forEach(seccion =>{
                     option = document.createElement("option");
                     option.value = seccion.id;
                     option.innerText = seccion.nombre;
                     select_secciones.appendChild(option);
-
                 })
+            }else{
+                seccion_container.classList.add("oculto");
             }
 
 
@@ -101,17 +102,14 @@
     }
 
     //inicializamos tinymce para el contenido
-    /*
+
     tinymce.init({
         selector: '#contenido',
-        plugins: [
-            'emoji'
-        ],
         toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
             'alignleft aligncenter alignright alignjustify | ' +
             'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
-      });
-*/
+    });
+
 
 
 
