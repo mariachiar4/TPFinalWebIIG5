@@ -39,7 +39,13 @@
 
         <div class="form-element">
             <label class="form-label" for="contenido">Contenido</label>
-            <textarea id="contenido" name="contenido" cols="30" rows="10"></textarea>
+            <textarea id="contenido" name="contenido" cols="30" rows="10">
+                    <input id="titulo"></input>
+                    <h3 id="bajada">Bajada</h3>
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est praesentium modi reprehenderit temporibus esse, aut sapiente officia enim amet eligendi minima deleniti blanditiis eaque, incidunt accusamus. Suscipit, natus modi.</p>
+
+            </textarea>
         </div>
 
         <div>
@@ -105,9 +111,13 @@
 
     tinymce.init({
         selector: '#contenido',
-        toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
-            'alignleft aligncenter alignright alignjustify | ' +
-            'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+        plugins: 'image',
+        toolbar: 'undo redo | alignleft aligncenter alignright alignjustify | image',
+        images_file_types: 'jpg,svg,webp,png',
+
+        images_upload_url: '/articulo/generateImg',
+     
+       
     });
 
 

@@ -25,9 +25,13 @@ class ArticuloController {
         echo $this->render->render("view/articulo/crearArticulo.php", array("publicaciones" => $publicaciones));
     }
 
+    
 
+    public function generateImg(){
+      echo json_encode(array('location' => "http://moxiecode.cachefly.net/tinymce/v9/images/logo.png"));
+    }
 
-    public function procesarArticulo(){
+    /* public function procesarArticulo(){
         $id_edicion_seccion = isset($_POST["id_edicion_seccion"]);
         $id_usuario_creador = 1; // ver de crear una variable en session con los datos mas importante del usuario que se logueó
         $id_estado = 1; // por defecto 1? 
@@ -39,7 +43,7 @@ class ArticuloController {
         $id_edicion_seccion = isset($_POST["contenido"]); // ver si se hace un json_encode ?? 
 
         //function al model para guardar el articulo
-    }
+    } */
 
     public function procesar_imagen($img){
         //copy lo que esta en pokedex 
