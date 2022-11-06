@@ -115,9 +115,7 @@
         toolbar: 'undo redo | alignleft aligncenter alignright alignjustify | image',
         images_file_types: 'jpg,svg,webp,png',
 
-        images_upload_url: '/articulo/generateImg',
-     
-       
+        images_upload_url: '/articulo/generateImg'
     });
 
 
