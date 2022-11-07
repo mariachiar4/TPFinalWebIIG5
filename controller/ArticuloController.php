@@ -25,8 +25,10 @@ class ArticuloController {
         echo $this->render->render("view/articulo/crearArticulo.php", array("publicaciones" => $publicaciones));
     }
 
-    
     public function procesarArticulo(){
+        var_dump($_POST);
+    }
+    public function procesarArticulo_2(){
         $id_edicion_seccion = isset($_POST["id_seccion"]) ? $_POST["id_seccion"] : NULL;
         $id_usuario_creador = 1; // ver de crear una variable en session con los datos mas importante del usuario que se logueó
         $id_estado = 1; // por defecto 1? 
@@ -34,12 +36,11 @@ class ArticuloController {
         $lon = 500.00;
         $titulo = isset($_POST["titulo"]) ? $_POST["titulo"] : NULL;
         $bajada = isset($_POST["bajada"])  ? $_POST["bajada"] : NULL;
-        //$foto = procesar_imagen(isset($_POST["foto"]));
+        $foto = procesar_imagen(isset($_POST["foto"]));
         $contenido = isset($_POST["contenido"]) ? $_POST["contenido"] : NULL; // ver si se hace un json_encode ?? 
 
         echo "id edicion ->$id_edicion_seccion";
         echo "<br>";
-        echo "titulo  -> $titulo";
         echo "<br>";
         echo "bajada  -> $bajada";
         echo "<br>";
@@ -47,22 +48,13 @@ class ArticuloController {
 
     }
 
-    public function procesarImagen(){
-        reset ($_FILES); 
-        $temp = current($_FILES); 
-        $carpeta_destino =  "public/img/articulos/";
-        $filetowrite = $carpeta_destino . $temp['name']; 
-
-        if (is_uploaded_file($temp['tmp_name'])){
-            if(move_uploaded_file($temp["tmp_name"], $filetowrite)){
-                $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? "https://" : "http://"; 
-                $baseurl = $protocol . $_SERVER["HTTP_HOST"] . rtrim(dirname($_SERVER['REQUEST_URI']), "/") . "/"; 
-                echo json_encode(array('location' => $baseurl . $filetowrite));
-            }else{ 
-                echo json_encode(array('location' => $filetowrite));
-
-            } 
-        }
+    function subir_img($img){
+        $nombre = $img["name"];
+        $size = $img["size"];
+        $type = $img["type"];
         
+        $carpeta_destino = $_SERVER["DOCUMENT_ROOT"] . "/TPFinalWebIIG5/public/img/articulos/";
+        move_uploaded_file($img["tmp_name"],$carpeta_destino . $nombre);
+        return $nombre;
     }
 }
