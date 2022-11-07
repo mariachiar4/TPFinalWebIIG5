@@ -4,7 +4,7 @@
 
 <section class="seccion-articulo">
     <h2 class="text-center">Crear Artículo</h2>
-    <form class="form-container" action="" method="POST" enctype="multipart/form-data">
+    <form class="form-container" action="/articulo/procesarArticulo" method="POST" enctype="multipart/form-data">
         <div class="form-element">
             <label class="form-label" for="id_publicacion">Publicación</label>
             <select name="id_publicacion" id="id_publicacion">
@@ -32,24 +32,13 @@
             <input type="text" id="bajada" name="bajada">
         </div>
 
-        <div class="form-element">
-            <label class="form-label" for="foto">Imágen</label>
-            <input type="file" id="foto" name="foto">
-        </div>
 
         <div class="form-element">
             <label class="form-label" for="contenido">Contenido</label>
-            <textarea id="contenido" name="contenido" cols="30" rows="10">
-                    <input id="titulo"></input>
-                    <h3 id="bajada">Bajada</h3>
-
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est praesentium modi reprehenderit temporibus esse, aut sapiente officia enim amet eligendi minima deleniti blanditiis eaque, incidunt accusamus. Suscipit, natus modi.</p>
-
-            </textarea>
+            <textarea id="contenido" name="contenido" cols="30" rows="10"></textarea>
         </div>
 
         <div>
-            <input type="hidden" name="id_edicion_seccion" value="">
             <input class="margin-top" type="submit" value="Crear Artículo">
         </div>
     </form>
@@ -115,7 +104,7 @@
         toolbar: 'undo redo | alignleft aligncenter alignright alignjustify | image',
         images_file_types: 'jpg,svg,webp,png',
 
-        images_upload_url: '/articulo/generateImg'
+        images_upload_url: '/articulo/procesarImagen'
     });
 
 
