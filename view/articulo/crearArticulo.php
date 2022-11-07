@@ -4,7 +4,7 @@
 
 <section class="seccion-articulo">
     <h2 class="text-center">Crear Artículo</h2>
-    <form class="form-container" action="/articulo/procesarArticulo" method="POST" enctype="multipart/form-data">
+    <form id="form" class="form-container" action="/articulo/procesarArticulo" method="POST" enctype="multipart/form-data">
         <div class="form-element">
             <label class="form-label" for="id_publicacion">Publicación</label>
             <select name="id_publicacion" id="id_publicacion">
@@ -31,6 +31,12 @@
             <label class="form-label" for="bajada">Bajada</label>
             <input type="text" id="bajada" name="bajada">
         </div>
+
+        <div class="form-element">
+            <label class="form-label" for="imagen">Imágen</label>
+            <input type="text" id="imagen" name="imagen">
+        </div>
+
 
 
         <div class="form-element">
@@ -68,7 +74,6 @@
             headers: {
                 "Content-Type": "application/json"
             },
-            //headers: {"Content-Type": "application/x-www-form-urlencoded"},
             body: formData
         })
         .then((response) => response.json())
@@ -100,11 +105,7 @@
 
     tinymce.init({
         selector: '#contenido',
-        plugins: 'image',
-        toolbar: 'undo redo | alignleft aligncenter alignright alignjustify | image',
-        images_file_types: 'jpg,svg,webp,png',
-
-        images_upload_url: '/articulo/procesarImagen'
+        toolbar: 'undo redo | alignleft aligncenter alignright alignjustify ',
     });
 
 
