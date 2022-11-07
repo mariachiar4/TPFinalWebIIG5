@@ -105,6 +105,7 @@
         images_file_types: 'jpg,svg,webp,png',
 
         images_upload_url: '/articulo/procesarImagen'
+		}
     });
 
 

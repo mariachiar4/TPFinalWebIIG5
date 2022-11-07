@@ -50,27 +50,18 @@ class ArticuloController {
     public function procesarImagen(){
         reset ($_FILES); 
         $temp = current($_FILES); 
-        $carpeta_destino =  $_SERVER["DOCUMENT_ROOT"] . "/TPFinalWebIIG5/public/img/articulos/";
+        $carpeta_destino =  "public/img/articulos/";
         $filetowrite = $carpeta_destino . $temp['name']; 
- 
+
         if (is_uploaded_file($temp['tmp_name'])){
             if(move_uploaded_file($temp["tmp_name"], $filetowrite)){
                 $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? "https://" : "http://"; 
                 $baseurl = $protocol . $_SERVER["HTTP_HOST"] . rtrim(dirname($_SERVER['REQUEST_URI']), "/") . "/"; 
                 echo json_encode(array('location' => $baseurl . $filetowrite));
             }else{ 
-                echo json_encode(array('location' => $temp["tmp_name"]));
+                echo json_encode(array('location' => $filetowrite));
 
             } 
-            /*
-            ERROR que me da desde el js, en rta al json_encode 
-            <br />
-<b>Warning</b>:  move_uploaded_file(C:/xampp/htdocs/TPFinalWebIIG5/TPFinalWebIIG5/public/img/articulos/pokemon-sprigatito.webp): Failed to open stream: No such file or directory in <b>C:\xampp\htdocs\TPFinalWebIIG5\controller\ArticuloController.php</b> on line <b>57</b><br />
-<br />
-<b>Warning</b>:  move_uploaded_file(): Unable to move &quot;C:\xampp\tmp\php311D.tmp&quot; to &quot;C:/xampp/htdocs/TPFinalWebIIG5/TPFinalWebIIG5/public/img/articulos/pokemon-sprigatito.webp&quot; in <b>C:\xampp\htdocs\TPFinalWebIIG5\controller\ArticuloController.php</b> on line <b>57</b><br />
-{"location":"C:\\xampp\\tmp\\php311D.tmp"}
-            */
-    
         }
         
     }
