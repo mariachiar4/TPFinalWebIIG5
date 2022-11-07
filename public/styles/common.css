@@ -5,6 +5,20 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-header-container {
+  display: flex;
+  width: 100%;
+}
+
+.justify-end {
+  justify-content: end;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
@@ -88,7 +102,7 @@ body {
 .form-label {
   color: white;
 }
-.text-center{
+.text-center {
   text-align: center;
 }
 
@@ -97,17 +111,17 @@ body {
   grid-template-columns: repeat(3, auto);
 }
 
-.seccion-articulo .form-label{
+.seccion-articulo .form-label {
   margin-top: 1rem;
 }
-.seccion-articulo input, .seccion-articulo textarea{
+.seccion-articulo input,
+.seccion-articulo textarea {
   display: block;
   border-radius: 8px;
   width: 100%;
   border: none;
-
 }
-.oculto{
+.oculto {
   display: none;
 }
 @media (max-width: 1400px) {

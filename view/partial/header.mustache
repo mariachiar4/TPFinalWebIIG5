@@ -18,14 +18,21 @@
 <body>
 <!-- Navbar -->
 <div class="">
-    <div class="w3-bar w3-black w3-card">
+    <div class="nav-header w3-bar w3-black w3-card">
         {{#logueado}}
-          <a class="w3-bar-item w3-button w3-padding-large" href="/user/logout">Logout</a>
-          <a class="w3-bar-item w3-button w3-padding-large" href="/user/panelAdmin">Panel Admin</a>
+          <div class="nav-header-container">
+            <a class="w3-bar-item w3-button w3-padding-large" href="/">Home</a>
+            <a class="w3-bar-item w3-button w3-padding-large" href="/user/panelAdmin">Panel Admin</a>  
+          </div>
+          <div class="nav-header-container justify-end">
+            <a class="w3-bar-item w3-button w3-padding-large" href="/user/logout">Logout</a>
+          </div>
         {{/logueado}}
         {{^logueado}}
+         <div class="nav-header-container">
           <a href="/user/registrarse" class="w3-bar-item w3-button w3-padding-large">Registrarse</a>
           <a class="w3-bar-item w3-button w3-padding-large" href="/user/login">Login</a>
+         </div>
         {{/logueado}}
     </div>
 </div>
