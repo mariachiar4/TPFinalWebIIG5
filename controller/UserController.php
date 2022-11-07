@@ -37,6 +37,7 @@ class UserController {
 
         if ($resultadoRegistro === "registrado"){
             //mandarmail
+            
             echo $this->render->render("view/registradoOk.php", array("nombre" => $data["nombre"]) );
         } else {
             echo $this->render->render("view/registradoError.php", array("error" => $resultadoRegistro) );
