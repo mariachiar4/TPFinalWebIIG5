@@ -35,20 +35,18 @@ class ArticuloController {
         $lat = 500.00;
         $lon = 500.00;
         $titulo = isset($_POST["titulo"]) ? $_POST["titulo"] : NULL;
-        $bajada = isset($_POST["bajada"])  ? $_POST["bajada"] : NULL;
-        $foto = procesar_imagen(isset($_POST["foto"]));
-        $contenido = isset($_POST["contenido"]) ? $_POST["contenido"] : NULL; // ver si se hace un json_encode ?? 
+        $bajada = isset($_POST["bajada"]) ? $_POST["bajada"] : NULL;
+       
+        $foto_contenido = isset($_FILES["imagen"]) ? $_FILES["imagen"] : NULL;
 
-        echo "id edicion ->$id_edicion_seccion";
-        echo "<br>";
-        echo "<br>";
-        echo "bajada  -> $bajada";
-        echo "<br>";
-        echo "contenido  -> $contenido";
+        if($foto != null){
+            $foto = procesar_imagen($foto_contenido);
+        }
+        $contenido = isset($_POST["contenido"]) ? $_POST["contenido"] : NULL; // ver si se hace un json_encode ?? 
 
     }
 
-    function subir_img($img){
+    function procesar_imagen($img){
         $nombre = $img["name"];
         $size = $img["size"];
         $type = $img["type"];
