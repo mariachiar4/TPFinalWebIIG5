@@ -4,11 +4,9 @@
 <section>
     <nav>
         <ul class="secciones-container">
-            <a class="secciones-item" href=""><li>Internacional</li></a>
-            <a class="secciones-item" href=""><li>Sociedad</li></a>
-            <a class="secciones-item" href=""><li>Economía</li></a>
-            <a class="secciones-item" href=""><li>Cultura</li></a>
-            <a class="secciones-item" href=""><li>Deportes</li></a>
+        {{#secciones}} 
+            <a class="secciones-item" href=""><li>{{nombre}}</li></a>
+        {{/secciones}} 
         </ul>
     </nav>
 </section>

@@ -3,17 +3,19 @@
 class EdicionController {
     private $edicionModel;
     private $publicacionModel;
+    private $seccionModel;
     private $render;
 
-    public function __construct($edicionModel,$publicacionModel,$render){
+    public function __construct($edicionModel, $publicacionModel, $seccionModel,$render){
         $this->edicionModel = $edicionModel;
         $this->publicacionModel = $publicacionModel;
+        $this->seccionModel = $seccionModel;
         $this->render = $render;
     }
 
     public function crearEdicion(){
         $publicaciones = $this->publicacionModel->getPublicaciones();
-        $secciones = $this->publicacionModel->getSecciones();
+        $secciones = $this->seccionModel->getSecciones();
         echo $this->render->render("view/edicion/crearEdicion.php", array("publicaciones" => $publicaciones, "secciones" => $secciones));
     }
 

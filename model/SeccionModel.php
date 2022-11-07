@@ -9,6 +9,10 @@ class SeccionModel
         $this->database = $database;
     }
 
+    public function getSecciones(){
+        return $this->database->query("SELECT * FROM seccion");
+    }
+
     public function obtenerSeccionesSegunPublicacion($id_publicacion){
         $sql = "SELECT s.id, s.nombre FROM seccion s
                     JOIN edicion_seccion ed ON ed.id_seccion = s.id  

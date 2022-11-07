@@ -2,10 +2,12 @@
 
 class PublicacionController {
     private $publicacionModel;
+    private $seccionModel;
     private $render;
 
-    public function __construct($publicacionModel,$render){
+    public function __construct($publicacionModel, $seccionModel, $render){
         $this->publicacionModel = $publicacionModel;
+        $this->seccionModel = $seccionModel;
         $this->render = $render;
     }
 
@@ -18,7 +20,9 @@ class PublicacionController {
 
     public function getPublicacion(){
         $id = $_GET["id"];
-        $secciones= $this->publicacionModel->getSecciones($id);
+        $secciones= $this->seccionModel->obtenerSeccionesSegunPublicacion($id);
+
+        var_dump($secciones);
 
         echo $this->render->render("view/publicacion/publicacion.php",array("secciones" => $secciones));
     }  
