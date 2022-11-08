@@ -19,6 +19,14 @@ class ArticuloController {
         $this->render = $render;
     }
 
+    public function getArticulo(){
+        $id = $_GET["id"];
+        $articulo = $this->articuloModel->getArticulo($id);
+
+
+        echo $this->render->render("view/articulo/articulo.php", array("articulo" => $articulo));
+    }
+
     public function crearArticulo(){
         $publicaciones = $this->publicacionModel->getPublicaciones();
 
