@@ -66,15 +66,20 @@
     let id_publicacion = 0;
     select_publicaciones.addEventListener("change", function(evento){
         id_publicacion = evento.target.value;
-        console.log("id", id_publicacion)
         obtenerSelectSecciones(id_publicacion);
     })
 
+    window.addEventListener("load", function(evento){
+        id_publicacion = 1 //document.getElementById("id_publicacion").value;
+        if(id_publicacion != 0){
+            obtenerSelectSecciones(id_publicacion);
+        }
+    })
+
     //llamada a fetch para obtener las secciones de la ultima edicion de la publicacion que se eligio en el primer select
-    //tambien se va a tener que crear otro dato que sea el id_edicion_seccion -> para que se llene el input hidden 
+    //tambien se va a tener que crear otro dato que sea el id_edicion_seccion
     function obtenerSelectSecciones(id_publicacion){
         const formData = new FormData();
-
         let url = "/seccion/procesarSeccionesSegunPublicacion";
 
         formData.append("id_publicacion", id_publicacion);
@@ -92,6 +97,7 @@
             if(secciones.length > 0){
                 let select_secciones = document.getElementById("id_seccion");
                 select_secciones.innerHTML = '<option value="" selected disabled>Seleccione una sección</option>';
+
                 seccion_container.classList.remove("oculto"); 
                 let option = "";
                 secciones.forEach(seccion =>{
@@ -103,9 +109,6 @@
             }else{
                 seccion_container.classList.add("oculto");
             }
-
-
-            
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -113,9 +116,8 @@
     }
 
     //inicializamos tinymce para el contenido
-
     tinymce.init({
         selector: '#contenido',
-        toolbar: 'undo redo | alignleft aligncenter alignright alignjustify ',
+        toolbar: 'undo redo | alignleft aligncenter alignright alignjustify'
     });
 </script>
