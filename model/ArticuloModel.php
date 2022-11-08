@@ -31,7 +31,7 @@ class ArticuloModel
     }
 
     public function obtenerArticulosSegunPublicacion($id_publicacion){
-        return $this->database->query("SELECT a.id, a.titulo, a.bajada FROM articulo a
+        return $this->database->query("SELECT a.id, a.titulo, a.bajada, a.fotos FROM articulo a
                                             JOIN edicion_seccion ed ON ed.id = a.id_edicionSeccion  
                                             WHERE ed.id_edicion = 
                                                 (SELECT e1.id FROM edicion e1  
@@ -42,5 +42,4 @@ class ArticuloModel
                                             AND a.id_estado = 1");
                                             // cuando este terminado cambiar a 3
     }
-
 }

@@ -91,7 +91,8 @@
             let seccion_container = document.getElementById("id_seccion_container");
             if(secciones.length > 0){
                 let select_secciones = document.getElementById("id_seccion");
-                seccion_container.classList.remove("oculto");
+                select_secciones.innerHTML = '<option value="" selected disabled>Seleccione una sección</option>';
+                seccion_container.classList.remove("oculto"); 
                 let option = "";
                 secciones.forEach(seccion =>{
                     option = document.createElement("option");
@@ -117,8 +118,4 @@
         selector: '#contenido',
         toolbar: 'undo redo | alignleft aligncenter alignright alignjustify ',
     });
-
-
-
-
 </script>
