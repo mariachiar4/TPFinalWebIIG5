@@ -53,3 +53,13 @@
   font-weight: 700;
   font-size: 2rem;
 }
+
+.form-input-file {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-input-file div {
+  display: flex;
+  align-items: center;
+}
