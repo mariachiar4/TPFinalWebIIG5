@@ -1,5 +1,6 @@
 <?php
 
+
 class UserController {
     private $userModel;
     private $render;
@@ -34,9 +35,12 @@ class UserController {
         }
 
         $resultadoRegistro = $this->userModel->insertarUsuario($data);
-
+        var_dump($resultadoRegistro);
         if ($resultadoRegistro === "registrado"){
             //mandarmail
+            Validator::enviarMail($data["email"], 
+            'Bienvenid@! Active su cuenta de Infonete',
+            '<a target="_blank" rel="noopener noreferrer" href="localhost/user/panelAdmin">Boton Prueba</a>');
             echo $this->render->render("view/registradoOk.php", array("nombre" => $data["nombre"]) );
         } else {
             echo $this->render->render("view/registradoError.php", array("error" => $resultadoRegistro) );
