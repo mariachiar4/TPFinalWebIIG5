@@ -15,8 +15,12 @@ class ArticuloModel
     }
 
     public function getArticulo($id){
-        return $this->database->query("SELECT a.id, u.nombre as usuarioCreador, a.titulo, a.bajada, a.fotos, a.contenido, a.lat, a.lon FROM articulo a 
-                                        JOIN usuario u on  u.id = a.id_usuarioCreador WHERE a.id = $id");
+        return $this->database->query("SELECT a.id, u.nombre as usuarioCreador, s.nombre as seccion, a.titulo, a.bajada, a.fotos, a.contenido, a.lat, a.lon 
+                                FROM articulo a 
+                                JOIN usuario u on  u.id = a.id_usuarioCreador
+                                JOIN edicion_seccion ed on  a.id_edicionSeccion = ed.id 
+                                JOIN seccion s on s.id = ed.id_seccion
+                                WHERE a.id = $id");
     }
 
     public function obtenerArticulosSegunPublicacion($id_publicacion){
@@ -27,7 +31,8 @@ class ArticuloModel
                                                     WHERE e1.fecha_creacion = (
                                                         SELECT MAX(e2.fecha_creacion) FROM edicion e2 
                                                         WHERE id_publicacion = $id_publicacion)
-                                                )");
+                                                )
+                                            AND a.id_estado = 3");
     }
 
 }

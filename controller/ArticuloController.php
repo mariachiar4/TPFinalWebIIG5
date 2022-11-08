@@ -23,6 +23,12 @@ class ArticuloController {
         $id = $_GET["id"];
         $articulo = $this->articuloModel->getArticulo($id);
 
+        /* $pepe = htmlentities($articulo[0]["contenido"]);
+        
+        $articulo[0]["contenido"] = html_entity_decode($pepe); */
+        //$articulo[0]["contenido"] = strip_tags($articulo[0]["contenido"]);
+
+
 
         echo $this->render->render("view/articulo/articulo.php", array("articulo" => $articulo));
     }
