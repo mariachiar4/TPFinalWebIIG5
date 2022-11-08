@@ -35,7 +35,7 @@ class ArticuloController {
         $lon = 500.00;
         $titulo = isset($_POST["titulo"]) ? $_POST["titulo"] : NULL;
         $bajada = isset($_POST["bajada"]) ? $_POST["bajada"] : NULL;
-        $id_articulo = $this->articuloModel->getLastPublicacion()[0]["id"];
+        $id_articulo = $this->articuloModel->getLastPublicacion()[0]["id"] + 1;
         $foto = isset($_FILES["imagen"]) ? $this->procesar_imagen($id_articulo, $_FILES["imagen"]) : NULL;
         $contenido = isset($_POST["contenido"]) ? $_POST["contenido"] : NULL;
         if($id_edicion_seccion != null && $titulo != null && $bajada != null && $foto != null && $contenido != null){
