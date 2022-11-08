@@ -37,7 +37,9 @@ class UserController {
 
         if ($resultadoRegistro === "registrado"){
             //mandarmail
-            
+            Validator::enviarMail($data["email"], 
+            'Bienvenid@! Active su cuenta de Infonete',
+            'Este es un body de prueba.');
             echo $this->render->render("view/registradoOk.php", array("nombre" => $data["nombre"]) );
         } else {
             echo $this->render->render("view/registradoError.php", array("error" => $resultadoRegistro) );
