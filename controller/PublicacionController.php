@@ -2,10 +2,14 @@
 
 class PublicacionController {
     private $publicacionModel;
+    private $seccionModel;
+    private $articuloModel;
     private $render;
 
-    public function __construct($publicacionModel,$render){
+    public function __construct($publicacionModel, $seccionModel, $articuloModel, $render){
         $this->publicacionModel = $publicacionModel;
+        $this->seccionModel = $seccionModel;
+        $this->articuloModel = $articuloModel;
         $this->render = $render;
     }
 
@@ -18,9 +22,11 @@ class PublicacionController {
 
     public function getPublicacion(){
         $id = $_GET["id"];
-        $secciones= $this->publicacionModel->getSecciones($id);
+        $secciones = $this->seccionModel->obtenerSeccionesSegunPublicacion($id);
+        $articulos = $this->articuloModel->obtenerArticulosSegunPublicacion($id);
 
-        echo $this->render->render("view/publicacion/publicacion.php",array("secciones" => $secciones));
+
+        echo $this->render->render("view/publicacion/publicacion.php",array("id" => $id, "secciones" => $secciones, "articulos" => $articulos));
     }  
     
     public function accionesPublicacion($notificacion = null){

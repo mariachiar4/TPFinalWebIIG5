@@ -1,0 +1,65 @@
+.page-container {
+  padding: 3rem;
+  width: 80vw;
+  margin: auto;
+}
+
+.articulo-container {
+  display: flex;
+  padding: 2rem;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 2rem;
+}
+
+.blue-text {
+  color: #0250c9;
+  font-size: 1rem;
+}
+
+.titulo-articulo {
+  display: flex;
+  column-gap: 0.5rem;
+  align-items: center;
+  font-size: 3rem;
+  color: #555;
+  margin: 0;
+}
+
+.bajada-articulo {
+  font-size: 1.5rem;
+  color: #666;
+  margin-top: 0;
+}
+
+.location-pin {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.location-pin:hover {
+  opacity: 0.5;
+}
+
+.creadopor-articulo {
+  display: flex;
+  justify-content: end;
+  text-align: #555;
+}
+
+.error-articulo {
+  color: red;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.form-input-file {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-input-file div {
+  display: flex;
+  align-items: center;
+}

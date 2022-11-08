@@ -10,7 +10,7 @@ class EdicionModel
     }
 
     public function insertarEdicion($id_publicacion, $nombre, $precio){
-        $fecha_creacion = date("Y-m-d");
+        $fecha_creacion = date("Y-m-d H:i:s");
         return $this->database->execute_last_id("INSERT INTO edicion VALUES (null, $id_publicacion, '$nombre', '$fecha_creacion', $precio)");
         
     }

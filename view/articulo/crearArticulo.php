@@ -1,10 +1,13 @@
 {{> header}}
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
+<link rel="stylesheet" type="text/css" href="/public/styles/articulo.css">
 
 <section class="seccion-articulo">
+    <div class="white-title">
+        {{notificacion}}
+    </div>
     <h2 class="text-center">Crear Artículo</h2>
-    <form class="form-container" action="" method="POST" enctype="multipart/form-data">
+    <form id="form" class="form-container" action="/articulo/procesarArticulo" method="POST" enctype="multipart/form-data">
         <div class="form-element">
             <label class="form-label" for="id_publicacion">Publicación</label>
             <select name="id_publicacion" id="id_publicacion">
@@ -33,23 +36,25 @@
         </div>
 
         <div class="form-element">
-            <label class="form-label" for="foto">Imágen</label>
-            <input type="file" id="foto" name="foto">
+            <label class="form-label" for="imagen">Imágen</label>
+            <div class="form-input-file">
+                <img id="img" alt="img" width="100" height="100"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOQAAADdCAMAAACc/C7aAAAAaVBMVEXDw8MAAADGxsaXl5fJycnMzMxSUlKRkZF1dXV5eXnCwsIFBQWlpaV+fn66urqurq5dXV1sbGxMTEyKiopXV1czMzOcnJwaGhqoqKiEhIQlJSUrKysODg5mZmZHR0ezs7M7OzsVFRU5OTmFwHepAAAC+klEQVR4nO3bi1KjMBSAYXIarIbea2uttVXf/yE36Q0qobrITHP0/2Z2Zt2xDP+GQEDMMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANQ56dCtY+JcZge9zgzsrXvipGc61EtzLO29KbpKLMx9mkPpI83H410XFiblyGFufy7Ph0lHPnSya/aByFuqRv7sSqchUvwV83k4EHFtt6QhcrwOl4GXZdv9VBApq3CdK/w1c9nykNUQ+XK6pG/abin5SFmWy5Z+u6FMP7K6unttt6cKIqflSE4a9tQd/zRtKflI6ZeRw6Y9deFS2ryl5COzUXkzMWoIcZm45bixUkGkfd6PormyyBMZPxkzaVouKIjM7PAwjtPm/XRP4Rse8/hgaoh0djzdbl9XeePJxc7CUBdmHi/REOkPx3Bb2DTlnOwP6L34vNQReZ3szqffRXRa/oJIcetzpJnksS2pj3T5pPrIqmfr6wL9kbZvynWf/8uuPi21Rzrxa4WijCzMW/0j6iKdV/lSZPH5Ges0V3+4flqi+uV77Ql07QmCtkg7GlcumM4uI0/ZC+UjGe67FpVl+qhWGGw/f0pRpIS99aeWjTtV2rdopBleTktNkZkMwvmzMHf20BCaY42FWV3MXFWR2eZY8ezvpY/N8aF8UhuZz84jtV+Iu/d4YfiGu+oHFUX6e43i1LDODs1FfCT9P8+lXN7piZRxNWOS23nTOB7syvsRPZHZ+qKhv2uckMfBLqelmsjLew1/anlpOlbLwT5vSUeks/2rQVG9U5eSyLC0+f+3JE53XToiRT6+OjhjPjRFunz6dVHM9DAtVURG7zW+ZbAfSw2R0mpCHvi1vFMRabctC/1/zdaKisjTTwnaRIYfhCmIdHbQunF/Rl5J8pEizfca37Pxkzr5yNnXHdfNJPGRHNrRvP9D81HqkbnNO5D2W5K//X1XFyK7kuyby3/iHXTp8rcJVmk2/onfCwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALi1f4DsKck70eEzAAAAAElFTkSuQmCC" />
+                <div>
+                    <input type="file" name="imagen" accept="image/png, image/jpeg, image/webp"
+                        onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])">
+                </div>
+            </div>
         </div>
+
+
 
         <div class="form-element">
             <label class="form-label" for="contenido">Contenido</label>
-            <textarea id="contenido" name="contenido" cols="30" rows="10">
-                    <input id="titulo"></input>
-                    <h3 id="bajada">Bajada</h3>
-
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est praesentium modi reprehenderit temporibus esse, aut sapiente officia enim amet eligendi minima deleniti blanditiis eaque, incidunt accusamus. Suscipit, natus modi.</p>
-
-            </textarea>
+            <textarea id="contenido" name="contenido" cols="30" rows="10"></textarea>
         </div>
 
         <div>
-            <input type="hidden" name="id_edicion_seccion" value="">
             <input class="margin-top" type="submit" value="Crear Artículo">
         </div>
     </form>
@@ -79,7 +84,6 @@
             headers: {
                 "Content-Type": "application/json"
             },
-            //headers: {"Content-Type": "application/x-www-form-urlencoded"},
             body: formData
         })
         .then((response) => response.json())
@@ -111,13 +115,7 @@
 
     tinymce.init({
         selector: '#contenido',
-        plugins: 'image',
-        toolbar: 'undo redo | alignleft aligncenter alignright alignjustify | image',
-        images_file_types: 'jpg,svg,webp,png',
-
-        images_upload_url: '/articulo/generateImg',
-     
-       
+        toolbar: 'undo redo | alignleft aligncenter alignright alignjustify ',
     });
 
 

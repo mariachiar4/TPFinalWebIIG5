@@ -10,7 +10,7 @@
         {{#publicaciones}} 
             {{#estado}} 
             <div class="carta"  style='background-color:{{color}}'> 
-                <a class="carta-link" href="/publicacion/getPublicacion/id={{id}}" target="_blank">
+                <a class="carta-link" href="/publicacion/getPublicacion/id={{id}}">
                     <h3 class="carta-titulo">{{nombre}}</h3>
                     <p class="carta-descripcion">{{descripcion}}</p>
                     <div class="carta-sociales-container">

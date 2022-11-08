@@ -191,7 +191,7 @@ CREATE TABLE `articulo` (
   `titulo` varchar(400) NOT NULL,
   `bajada` varchar(400) NOT NULL,
   `fotos`  varchar(400) NOT NULL,
-  `contenido` json NOT NULL
+  `contenido` text NOT NULL
 );
 
 
