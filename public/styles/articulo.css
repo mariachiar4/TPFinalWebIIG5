@@ -32,6 +32,15 @@
   margin-top: 0;
 }
 
+.contenedor-imagen-articulo{
+  margin: auto;
+  text-align: center;
+}
+
+.imagen-articulo{
+  width: 80%;
+}
+
 .location-pin {
   width: 32px;
   height: 32px;

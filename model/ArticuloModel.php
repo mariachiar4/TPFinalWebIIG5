@@ -39,7 +39,8 @@ class ArticuloModel
                                                         SELECT MAX(e2.fecha_creacion) FROM edicion e2 
                                                         WHERE id_publicacion = $id_publicacion)
                                                 )
-                                            AND a.id_estado = 3");
+                                            AND a.id_estado = 1");
+                                            // cuando este terminado cambiar a 3
     }
 
 }
