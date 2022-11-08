@@ -48,7 +48,8 @@ class Configuration{
     public function getPublicacionController(){
         $publicacionModel = $this->getPublicacionModel();
         $seccionModel = $this->getSeccionModel();
-        return new PublicacionController($publicacionModel, $seccionModel, $this->getRender());
+        $articuloModel = $this->getArticuloModel();
+        return new PublicacionController($publicacionModel, $seccionModel, $articuloModel, $this->getRender());
     }
 
     public function getEdicionModel(){
