@@ -19,7 +19,7 @@ public static function enviarMail($mailUsuario, $asunto, $body)
     // 0 = off (producción)
     // 1 = client messages
     // 2 = client and server messages
-    $mail->SMTPDebug = 0;
+    $mail->SMTPDebug =0 ;
     //Ahora definimos gmail como servidor que aloja nuestro SMTP
     $mail->Host = 'smtp.gmail.com';
     //El puerto será el 587 ya que usamos encriptación TLS
@@ -31,7 +31,7 @@ public static function enviarMail($mailUsuario, $asunto, $body)
     //Definimos la cuenta que vamos a usar. Dirección completa de la misma
     $mail->Username = "tpfinalwebiig5@gmail.com";
     //Introducimos nuestra contraseña de gmail
-    $mail->Password = "tpfinal1098";
+    $mail->Password = "ubrbonaxhwlnasns";
     //Definimos el remitente (dirección y, opcionalmente, nombre)
     $mail->SetFrom('tpfinalwebiig5@gmail.com', 'GrupoCinco');
     //Y, ahora sí, definimos el destinatario (dirección y, opcionalmente, nombre)

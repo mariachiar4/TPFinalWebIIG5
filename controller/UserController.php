@@ -40,7 +40,7 @@ class UserController {
             //mandarmail
             Validator::enviarMail($data["email"], 
             'Bienvenid@! Active su cuenta de Infonete',
-            'Este es un body de prueba.');
+            '<a target="_blank" rel="noopener noreferrer" href="localhost/user/panelAdmin">Boton Prueba</a>');
             echo $this->render->render("view/registradoOk.php", array("nombre" => $data["nombre"]) );
         } else {
             echo $this->render->render("view/registradoError.php", array("error" => $resultadoRegistro) );
