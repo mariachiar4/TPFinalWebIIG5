@@ -2,9 +2,13 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-require_once 'third-party/phpmailer/Exception.php';
-require_once 'third-party/phpmailer/PHPMailer.php';
-require_once 'third-party/phpmailer/SMTP.php';
+require_once 'third-party/PHPmailer/src/Exception.php';
+require_once 'third-party/PHPmailer/src/PHPMailer.php';
+require_once 'third-party/PHPmailer/src/SMTP.php';
+
+
+class Validator
+{
 
 public static function enviarMail($mailUsuario, $asunto, $body)
 {
@@ -44,4 +48,5 @@ public static function enviarMail($mailUsuario, $asunto, $body)
     if (!$mail->Send()) {
         echo "Error: " . $mail->ErrorInfo;
     }
+}
 }

@@ -18,6 +18,8 @@ include_once("controller/SeccionController.php");
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
 
+include_once("helpers/Validator.php");
+
 class Configuration{
 
     private function getDatabase(){
