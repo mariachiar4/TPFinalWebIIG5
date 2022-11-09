@@ -81,4 +81,15 @@ class ArticuloController {
         move_uploaded_file($img["tmp_name"],$carpeta_destino . $nombre);
         return $nombre;
     }
+
+
+
+
+
+
+    public function listar_articulos(){
+        $articulos = $this->articuloModel->getArticulos();
+        echo $this->render->render("view/articulo/listaArticulos.php",array("articulos" => $articulos));
+
+    }
 }

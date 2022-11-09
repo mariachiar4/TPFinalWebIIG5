@@ -18,7 +18,14 @@ class ArticuloModel
     }
 
     public function getArticulos(){
-        return $this->database->query("SELECT * FROM articulo");
+        return $this->database->query("SELECT a.id, a.titulo, u.nombre as usuarioCreador, e.nombre as edicion, s.nombre as seccion, p.nombre as publicacion
+                                FROM articulo a 
+                                LEFT JOIN usuario u on  u.id = a.id_usuarioCreador
+                                LEFT JOIN edicion_seccion ed on  a.id_edicionSeccion = ed.id 
+                                LEFT JOIN seccion s on s.id = ed.id_seccion
+                                LEFT JOIN edicion e on e.id = ed.id_edicion
+                                LEFT JOIN publicacion p on p.id = e.id_publicacion
+                                ");
     }
 
     public function getArticulo($id){
