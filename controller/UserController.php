@@ -35,7 +35,7 @@ class UserController {
         }
 
         $resultadoRegistro = $this->userModel->insertarUsuario($data);
-        var_dump($resultadoRegistro);
+    
         if ($resultadoRegistro === "registrado"){
             //mandarmail
             Validator::enviarMail($data["email"], 
