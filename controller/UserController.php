@@ -25,6 +25,7 @@ class UserController {
         $data["password"]  = $_POST["password"];
         $data["lat"]  = isset($_POST["lat"]) ? $_POST["lat"] : 0;
         $data["lon"]  = isset($_POST["lon"]) ? $_POST["lon"] : 0;
+       
         
         $errores_validacion = false;
         foreach($data as $clave => $valor){
@@ -34,16 +35,36 @@ class UserController {
             $errores_validacion = $this->validacion($clave, $valor);
         }
 
+        $token = bin2hex(random_bytes(16)); 
+        $data["token"]  = $token;
+
         $resultadoRegistro = $this->userModel->insertarUsuario($data);
     
         if ($resultadoRegistro === "registrado"){
             //mandarmail
-            Validator::enviarMail($data["email"], 
-            'Bienvenid@! Active su cuenta de Infonete',
-            '<a target="_blank" rel="noopener noreferrer" href="localhost/user/panelAdmin">Boton Prueba</a>');
+            $this->enviarEmail($data, $token);
             echo $this->render->render("view/registradoOk.php", array("nombre" => $data["nombre"]) );
         } else {
             echo $this->render->render("view/registradoError.php", array("error" => $resultadoRegistro) );
+        }
+    }
+
+    private function enviarEmail($data,$token){
+        Validator::enviarMail($data["email"], 
+        'Bienvenid@! Active su cuenta de Infonete',
+        "<a style='background-color: #17c; color: #fff; cursor: pointer; width: 250px; padding: 16px; outline: 0' 
+        target='_blank' rel='noopener noreferrer' href='localhost/user/verificarUsuario?token=$token'>Confirmar Email</a>");
+    }
+
+    public function verificarUsuario(){
+        $token = $_GET["token"];
+        
+        $validadoIsOk = $this->userModel->verificarUsuario($token);
+
+        if($validadoIsOk){
+            echo $this->render->render("view/cuentaValidada.php" );
+        } else {
+            echo $this->render->render("view/errorDeValidacion.php" );
         }
     }
 

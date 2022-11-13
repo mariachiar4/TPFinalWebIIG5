@@ -17,6 +17,7 @@ class Router{
         } else if ($module === "user" && (
                         $action === "registrarse" ||
                         $action === "login" || 
+                        $action === "verificarUsuario" || 
                         $action === "procesarLogin" 
                         || $action === "procesarRegistro"
                         )){ // si no es ta logueado, chequear que la navegacion sea restringida

@@ -16,7 +16,7 @@ class UserModel
         $hash = !empty($password) ? md5($password) : null;
         $lat = $data["lat"];
         $lon = $data["lon"];
-        $token = bin2hex(random_bytes(16)); 
+        $token = $data["token"];
 
         $usuarioEncontrado = $this->database->query("SELECT * FROM validacion WHERE email = '$email' ");
         
@@ -37,5 +37,10 @@ class UserModel
         $usuarioEncontrado = $this->database->query("SELECT * FROM validacion WHERE email = '$email' AND contrasena = '$hash' ");
 
         return $usuarioEncontrado;
+    }
+
+    public function verificarUsuario($token){
+        return $this->database->execute("UPDATE validacion SET confirmado = 1 WHERE token = '$token'");
+
     }
 }
