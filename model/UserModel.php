@@ -36,7 +36,6 @@ class UserModel
         //comparamos el hash de la contraseña en bd con hash desde el request
         $usuarioEncontrado = $this->database->query("SELECT * FROM validacion WHERE email = '$email' AND contrasena = '$hash' ");
 
-        return count($usuarioEncontrado) !== 0 ? true : false;
-
+        return $usuarioEncontrado;
     }
 }

@@ -73,11 +73,16 @@ class UserController {
         $data["email"]  = $_POST["email"];
         $data["password"]  = $_POST["password"];
 
-        $resultado = $this->userModel->getUsuario($data);
+        $usuarioEncontrado = $this->userModel->getUsuario($data);
+        $usuarioConfirmado = count($usuarioEncontrado) > 0 ? $usuarioEncontrado[0]["confirmado"] : null;
 
-        if ($resultado) {
-            $_SESSION["logueado"] = true;
-            header('Location: /publicacion'); //CONSULTAR AL PROFESOR SI ESTO ESTA CORRECTO COMO ALTERNATIVA PARA PODER LLAMAR A UN SEGUNDO CONTROLLER
+        if ($usuarioEncontrado) {
+            if ($usuarioConfirmado){
+                $_SESSION["logueado"] = true;
+                header('Location: /publicacion'); //CONSULTAR AL PROFESOR SI ESTO ESTA CORRECTO COMO ALTERNATIVA PARA PODER LLAMAR A UN SEGUNDO CONTROLLER
+            } else {
+                echo $this->render->render("view/login.php",array("error" => "Cuenta no verificada! Revisa tu Email!"));
+            }
 
         } else {
             $_SESSION = array();
