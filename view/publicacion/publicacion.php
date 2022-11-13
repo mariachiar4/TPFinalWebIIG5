@@ -17,9 +17,7 @@
         <a href="/articulo/getArticulo/id={{id}}" class="publicaciones-principales-itemLink">
             <h3>{{titulo}}</h3>
             <h4>{{bajada}}</h4>
-            <img src="https://www.infobae.com/new-resizer/IaJkgUr27syQN0xrQ9ZiyHAOaMY=/992x606/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/H5RBZFFBY3XG3KZPP363OS2P2A.jpg" alt="Soja">
+            <img src="/public/img/articulos/{{fotos}}" alt="{{titulo}}">
         </a>
-    {{/articulos}}
-   
-    
+    {{/articulos}}    
 </section>

@@ -32,6 +32,15 @@
   margin-top: 0;
 }
 
+.contenedor-imagen-articulo{
+  margin: auto;
+  text-align: center;
+}
+
+.imagen-articulo{
+  width: 80%;
+}
+
 .location-pin {
   width: 32px;
   height: 32px;
@@ -62,4 +71,15 @@
 .form-input-file div {
   display: flex;
   align-items: center;
+}
+
+
+.grid-articulo {
+  width: 80%;
+  margin: auto;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  grid-column-gap: 0px;
+  grid-row-gap: 0.5rem;
 }

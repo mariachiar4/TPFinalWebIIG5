@@ -14,6 +14,6 @@
     <div class="margin-top">
         <h3 class="titulo-admin-container">Artículo</h3>
         <a class="link-admin" href="/articulo/crearArticulo">Crear Artículo</a>
-        <a class="link-admin" href="/articulo/accionesArticulo">Editar Artículos</a>
+        <a class="link-admin" href="/articulo/listar_articulos">Editar Artículos</a>
     </div>
 </section>

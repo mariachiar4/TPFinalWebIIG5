@@ -29,9 +29,7 @@ class ArticuloController {
         
         $articulo[0]["contenido"] = html_entity_decode($pepe); */
         //$articulo[0]["contenido"] = strip_tags($articulo[0]["contenido"]);
-
-
-
+        
         echo $this->render->render("view/articulo/articulo.php", array("articulo" => $articulo));
     }
 
@@ -82,5 +80,16 @@ class ArticuloController {
         $carpeta_destino = $_SERVER["DOCUMENT_ROOT"] . "/public/img/articulos/";
         move_uploaded_file($img["tmp_name"],$carpeta_destino . $nombre);
         return $nombre;
+    }
+
+
+
+
+
+
+    public function listar_articulos(){
+        $articulos = $this->articuloModel->getArticulos();
+        echo $this->render->render("view/articulo/listaArticulos.php",array("articulos" => $articulos));
+
     }
 }
