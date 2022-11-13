@@ -23,8 +23,8 @@ class UserController {
         $data["nombre"] = $_POST["nombre"];
         $data["email"]  = $_POST["email"];
         $data["password"]  = $_POST["password"];
-        $data["lat"]  = 10.23;
-        $data["lon"]  = 500.00;
+        $data["lat"]  = isset($_POST["lat"]) ? $_POST["lat"] : 0;
+        $data["lon"]  = isset($_POST["lon"]) ? $_POST["lon"] : 0;
         
         $errores_validacion = false;
         foreach($data as $clave => $valor){
@@ -95,6 +95,10 @@ class UserController {
 
     public function panelAdmin(){
         echo $this->render->render("view/panelAdmin.php");
+    }
+
+    public function mapa(){
+        echo $this->render->render("view/mapa.php");
     }
     
   
