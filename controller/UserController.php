@@ -52,7 +52,10 @@ class UserController {
     private function enviarEmail($data,$token){
         Validator::enviarMail($data["email"], 
         'Bienvenid@! Active su cuenta de Infonete',
-        "<a style='background-color: #17c; color: #fff; cursor: pointer; width: 250px; padding: 16px; outline: 0' 
+        "
+        <h3>Gracias Por Registrarte en Infonete</h3>
+        <p>Por favor clickea en el siguiente link para validar tu cuenta!</p>
+        <a style='background-color: #17c; color: #fff; cursor: pointer; width: 250px; padding: 6px; outline: 0; font-size:1.2rem; text-decoration:none;' 
         target='_blank' rel='noopener noreferrer' href='localhost/user/verificarUsuario?token=$token'>Confirmar Email</a>");
     }
 
