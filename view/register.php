@@ -1,7 +1,6 @@
 {{> header}}
 
 <script>
-
 function getLocation() {
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(getPosition);
@@ -15,8 +14,6 @@ function getPosition(position) {
     lonInput.value = position.coords.longitude
  
 }
-
-
   window.addEventListener("load", function(evento){
       getLocation();
     })
