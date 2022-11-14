@@ -6,14 +6,23 @@
     <div class="white-title">
         {{notificacion}}
     </div>
-    <h2 class="text-center">Crear Artículo</h2>
+    <h2 class="text-center">
+        {{#articulo}}Editar{{/articulo}}
+        <!-- el primero pregunta si existe + itera, imprime EDITAR -->
+        {{^articulo}}Crear{{/articulo}} 
+        <!-- el segundo pregunta si NO existe , imprime CREAR-->
+        Artículo
+    </h2>
     <form id="form" class="form-container" action="/articulo/procesarArticulo" method="POST" enctype="multipart/form-data">
         <div class="form-element">
             <label class="form-label" for="id_publicacion">Publicación</label>
+            
             <select name="id_publicacion" id="id_publicacion">
-                <option value="" disabled selected>Seleccione una publicación</option>
+                <option value="" disabled>Seleccione una publicación</option>
                 {{#publicaciones}}
-                    <option value="{{id}}">{{nombre}}</option>
+                    {{#articulo}}
+                        <option value="{{id}}" {{#selected}}selected{{/selected}}>{{nombre}}</option>
+                    {{/articulo}}
                 {{/publicaciones}}
             </select>
         </div>

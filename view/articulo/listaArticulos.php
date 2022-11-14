@@ -23,9 +23,7 @@
         <div>{{edicion}}</div>
         <div>{{seccion}}</div>
         <div>{{publicacion}}</div>
-        <a href="#">Ver artículo</a>
-
-        
+        <a href="/articulo/editarArticulo?id={{id}}">Editar artículo</a>
     {{/articulos}} 
 
     </div>

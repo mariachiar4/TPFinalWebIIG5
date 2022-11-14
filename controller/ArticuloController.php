@@ -62,7 +62,6 @@ class ArticuloController {
                 }
                 $this->crearArticulo();
             }
-
         }else{
             //no se pudo crear articulo
             if($foto != null){
@@ -82,14 +81,21 @@ class ArticuloController {
         return $nombre;
     }
 
-
-
-
-
-
     public function listar_articulos(){
         $articulos = $this->articuloModel->getArticulos();
         echo $this->render->render("view/articulo/listaArticulos.php",array("articulos" => $articulos));
-
+    }
+    public function editarArticulo(){
+        $id_articulo = $_GET["id"];
+        $articulo = $this->articuloModel->getArticulo($id_articulo);
+        $publicaciones = $this->publicacionModel->getPublicaciones();
+        foreach($publicaciones as &$publicacion){
+            $publicacion["selected"] = false;
+            if($publicacion["id"] == $articulo[0]["id_publicacion"]){
+                $publicacion["selected"] = true;
+            }
+        }
+        
+        echo $this->render->render("view/articulo/crearArticulo.php",array("articulo" => $articulo, "publicaciones" => $publicaciones));
     }
 }
