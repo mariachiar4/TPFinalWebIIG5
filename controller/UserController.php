@@ -23,8 +23,8 @@ class UserController {
         $data["nombre"] = $_POST["nombre"];
         $data["email"]  = $_POST["email"];
         $data["password"]  = $_POST["password"];
-        $data["lat"]  = isset($_POST["lat"]) ? $_POST["lat"] : 0;
-        $data["lon"]  = isset($_POST["lon"]) ? $_POST["lon"] : 0;
+        $data["lat"]  = !empty($_POST["lat"]) ? $_POST["lat"] : 0;
+        $data["lon"]  = !empty($_POST["lon"]) ? $_POST["lon"] : 0;
        
         
         $errores_validacion = false;
