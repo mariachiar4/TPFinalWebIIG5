@@ -29,11 +29,13 @@ class ArticuloModel
     }
 
     public function getArticulo($id){
-        return $this->database->query("SELECT a.id, u.nombre as usuarioCreador, s.nombre as seccion, a.titulo, a.bajada, a.fotos, a.contenido, a.lat, a.lon 
+        return $this->database->query("SELECT a.id as id_articulo, p.id as id_publicacion, u.nombre as usuarioCreador, s.nombre as seccion, a.titulo, a.bajada, a.fotos, a.contenido, a.lat, a.lon 
                                 FROM articulo a 
                                 LEFT JOIN usuario u on  u.id = a.id_usuarioCreador
                                 LEFT JOIN edicion_seccion ed on  a.id_edicionSeccion = ed.id 
                                 LEFT JOIN seccion s on s.id = ed.id_seccion
+                                LEFT JOIN edicion e on e.id = ed.id_edicion
+                                LEFT JOIN publicacion p on p.id = e.id_publicacion
                                 WHERE a.id = $id");
     }
 
@@ -43,7 +45,7 @@ class ArticuloModel
                                 LEFT JOIN edicion_seccion ed ON ed.id = a.id_edicionSeccion
                                 LEFT JOIN edicion e ON e.id = ed.id_edicion
                                 WHERE e.id_publicacion = $id_publicacion
-                                AND id_estado = 3");
-                                            // cuando este terminado cambiar a 3
+                                -- AND id_estado = 3
+                                ");
     }
 }

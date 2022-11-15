@@ -12,7 +12,6 @@ function getPosition(position) {
     let lonInput = document.getElementById("lon")
     latInput.value = position.coords.latitude
     lonInput.value = position.coords.longitude
- 
 }
   window.addEventListener("load", function(evento){
       getLocation();
