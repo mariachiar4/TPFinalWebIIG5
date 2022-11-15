@@ -9,12 +9,19 @@ CREATE TABLE `usuario` (
   `email` varchar(60) NOT NULL
 );
 
+INSERT INTO `usuario` (`nombre`,`email` )
+VALUES ('Admin', 'tpfinalwebiig5@gmail.com');
+
 CREATE TABLE `validacion` (
   `email` varchar(60) NOT NULL PRIMARY KEY,
   `contrasena` varchar(60) NOT NULL,
   `token` varchar(100) NULL,
   `confirmado` int(1) NOT NULL
 );
+
+INSERT INTO `validacion` (`email`,`contrasena`,`confirmado`)
+VALUES ('tpfinalwebiig5@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055','1');
+
 CREATE TABLE `catalogo` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `nombre` varchar(50) NOT NULL
