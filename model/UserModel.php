@@ -9,6 +9,10 @@ class UserModel
         $this->database = $database;
     }
 
+    public function getInformacionDelUsuario($email){
+        return $this->database->query("SELECT * FROM usuario WHERE email = '$email'");
+    }
+
     public function insertarUsuario($data){
         $nombre = $data["nombre"];
         $email = $data["email"];

@@ -10,10 +10,6 @@ class UserController {
         $this->render = $render;
     }
 
-/* 
-    public function execute(){
-        echo $this->render->render("view/home.php");
-    } */
 
     public function registrarse(){
         echo $this->render->render("view/register.php" );
@@ -103,7 +99,8 @@ class UserController {
         if ($usuarioEncontrado) {
             if ($usuarioConfirmado){
                 $_SESSION["logueado"] = true;
-                header('Location: /publicacion'); //CONSULTAR AL PROFESOR SI ESTO ESTA CORRECTO COMO ALTERNATIVA PARA PODER LLAMAR A UN SEGUNDO CONTROLLER
+                $_SESSION["usuario"] = $this->userModel->getInformacionDelUsuario($data["email"]);
+                header('Location: /publicacion'); 
             } else {
                 echo $this->render->render("view/login.php",array("error" => "Cuenta no verificada! Revisa tu Email!"));
             }
