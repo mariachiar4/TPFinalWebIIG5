@@ -46,7 +46,7 @@ class PublicacionController {
 
     public function getPublicacion(){
         $id = $_GET["id"];
-        $secciones = $this->seccionModel->obtenerSeccionesSegunPublicacion($id);
+        $secciones = $this->seccionModel->obtenerSeccionesDeUltimaEdicionSegunPublicacion($id);
         $articulos = $this->articuloModel->obtenerArticulosSegunPublicacion($id);
 
 

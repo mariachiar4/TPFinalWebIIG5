@@ -16,7 +16,7 @@ class SeccionController {
 
     public function procesarSeccionesSegunPublicacion(){
         $id_publicacion = $_POST["id_publicacion"];
-        $secciones = $this->seccionModel->obtenerSeccionesSegunPublicacion($id_publicacion);
+        $secciones = $this->seccionModel->obtenerSeccionesDeUltimaEdicionSegunPublicacion($id_publicacion);
         echo json_encode($secciones);
     }
 }

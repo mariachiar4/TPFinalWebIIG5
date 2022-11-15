@@ -13,7 +13,7 @@ class SeccionModel
         return $this->database->query("SELECT * FROM seccion");
     }
 
-    public function obtenerSeccionesSegunPublicacion($id_publicacion){
+    public function obtenerSeccionesDeUltimaEdicionSegunPublicacion($id_publicacion){
         $sql = "SELECT s.id, s.nombre FROM seccion s
                     JOIN edicion_seccion ed ON ed.id_seccion = s.id  
                     WHERE ed.id_edicion = 

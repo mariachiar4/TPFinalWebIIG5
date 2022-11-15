@@ -75,7 +75,8 @@ class Configuration{
         $publicacionModel = $this->getPublicacionModel();
         $articuloModel = $this->getArticuloModel();
         $seccionModel = $this->getSeccionModel();
-        return new ArticuloController($articuloModel, $seccionModel, $publicacionModel, $this->getRender());
+        $edicionModel = $this->getEdicionModel();
+        return new ArticuloController($articuloModel, $seccionModel, $publicacionModel,$edicionModel, $this->getRender());
     }
 
     public function getSeccionModel(){
