@@ -26,7 +26,8 @@ class EdicionModel
     }
 
     public function getEdicionSeccion($id_edicion, $id_seccion){
-        return $this->database->query("SELECT id FROM edicion_seccion WHERE id_edicion = $id_edicion AND id_seccion = $id_seccion");
+        $edicion_seccion = $this->database->query("SELECT id FROM edicion_seccion WHERE id_edicion = $id_edicion AND id_seccion = $id_seccion");
+        return  $edicion_seccion[0]["id"];
     }
 
     public function getEdicionesDePublicacion() {

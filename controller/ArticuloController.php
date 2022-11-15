@@ -12,7 +12,6 @@ class ArticuloController {
     private $seccionModel;
     private $edicionModel;
     private $render;
-    private $notificacion;
 
     public function __construct($articuloModel, $seccionModel, $publicacionModel, $edicionModel, $render){
         $this->articuloModel = $articuloModel;
@@ -20,7 +19,6 @@ class ArticuloController {
         $this->publicacionModel = $publicacionModel;
         $this->edicionModel = $edicionModel;
         $this->render = $render;
-        $this->notificacion = "";
     }
 
     public function getArticulo(){
@@ -30,17 +28,17 @@ class ArticuloController {
         echo $this->render->render("view/articulo/articulo.php", array("articulo" => $articulo));
     }
 
-    public function crearArticulo(){
+    public function crearArticulo($notificacion = ""){
         $publicaciones = $this->publicacionModel->getPublicaciones();
 
-        echo $this->render->render("view/articulo/crearArticulo.php", array("publicaciones" => $publicaciones, "notificacion" => $this->notificacion));
+        echo $this->render->render("view/articulo/crearArticulo.php", array("publicaciones" => $publicaciones, "notificacion" => $notificacion));
     }
 
     private function getEdicionSeccion($id_edicion, $id_seccion ){
         return $this->edicionModel->getEdicionSeccion($id_edicion, $id_seccion);
     }
 
-    private function validacionArticulo($clave, $valor){
+    private function validacionArticulo($valor){
         return empty($valor);
     }
 
@@ -52,14 +50,16 @@ class ArticuloController {
         $articulo["id_estado"] = 3; // 1 -> draft, 2 -> a publicar, 3 -> publicado , 4 -> dado de baja 
         $articulo["lat"] = 500.00;
         $articulo["lon"] = 500.00;
+        $articulo["fotos"] = $this->procesar_imagen($_FILES["imagen"]);
+
 
         $errores_validacion = false;
-        foreach($articulo as $clave => $valor){
+        foreach($articulo as $valor){
             if($errores_validacion){
-                header('Location: /articulo/crearArticulo');
+                $this->crearArticulo("Hubo un error en la carga del articulo");
                 exit;
             }
-            $errores_validacion = $this->validacionArticulo($clave, $valor);
+            $errores_validacion = $this->validacionArticulo($valor);
         }
                 
         if (isset($_POST["id_publicacion"]) && isset($_POST["id_seccion"])){
@@ -68,48 +68,34 @@ class ArticuloController {
             $id_edicion = $this->edicionModel->getUltimaEdicionDePublicacion($id_publicacion);
             $articulo["id_edicionSeccion"] = $this->getEdicionSeccion($id_edicion, $id_seccion);
         } else {
-            header('Location: /articulo/crearArticulo');
+            $this->crearArticulo("No se selecciono Publicacion o Seccion");
             exit;
         }
+       
+        $response = $this->articuloModel->crearArticulo($articulo);
 
-        var_dump($articulo);
-/*        
-        $response = $this->articuloModel->crearArticulo($id_edicion_seccion, $id_usuario_creador, $id_estado, $lat, $lon, $titulo, $bajada, $foto, $contenido);
- */
-        
-                
-        /* $id_articulo = $this->articuloModel->getLastPublicacion()[0]["id"] + 1; */
-
-        /* $foto = isset($_FILES["imagen"]) ? $this->procesar_imagen($id_articulo, $_FILES["imagen"]) : NULL; */
-
-       /*  if($id_edicion_seccion != null && $titulo != null && $bajada != null && $contenido != null){            
-            
-            $this->notificacion = $response == 1 ? "El artículo se creó correctamente" : "El artículo no se pudo crear"; // ver como redirigir y mandar msj correctamente
-
-            if($response == 1){
-                header('Location: /user/panelAdmin');
-                exit;
-            }else{
-                if($foto != null){
-                    unlink($_SERVER["DOCUMENT_ROOT"] . "/public/img/articulos/". $foto);
-                }
-                $this->crearArticulo();
-            }
-        }else{
-            //no se pudo crear articulo
-           
-            $this->notificacion = "Error al crear el artículo, complete los campos";
-            $this->crearArticulo();
-        } */
+        if ($response == 1){
+            header('Location: /user/panelAdmin');
+            exit;
+        } else {
+            $this->crearArticulo("No se pudo crear el articulo");
+            exit;
+        }                
     }
 
-    private function procesar_imagen($id_articulo, $img){
-        $type = explode("/", $img["type"])[1];
-        $nombre = "img-articulo-$id_articulo.$type";
-        
-        $carpeta_destino = $_SERVER["DOCUMENT_ROOT"] . "/public/img/articulos/";
-        move_uploaded_file($img["tmp_name"],$carpeta_destino . $nombre);
-        return $nombre;
+    private function procesar_imagen($img){
+        if (!empty($img["name"])){
+            $code = bin2hex(random_bytes(16));
+            $type = explode("/", $img["type"])[1];
+            $nombre = "img-articulo-$code.$type";
+            
+            $carpeta_destino = $_SERVER["DOCUMENT_ROOT"] . "/public/img/articulos/";
+            move_uploaded_file($img["tmp_name"],$carpeta_destino . $nombre);
+            return $nombre;
+        } else {
+            $this->crearArticulo("No se reconoció la imagen correctamente");
+            exit;
+        }
     }
 
     public function listar_articulos(){

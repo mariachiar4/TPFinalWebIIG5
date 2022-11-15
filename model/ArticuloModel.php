@@ -9,8 +9,21 @@ class ArticuloModel
         $this->database = $database;
     }
 
-    public function crearArticulo($id_edicion_seccion, $id_usuario_creador, $id_estado, $lat, $lon, $titulo, $bajada, $foto, $contenido){
-        return $this->database->execute("INSERT INTO articulo VALUES (null, $id_estado, $id_edicion_seccion, $id_usuario_creador, $lat, $lon, '$titulo', '$bajada', '$foto', '$contenido')");
+   /*  public function crearArticulo($id_edicion_seccion, $id_usuario_creador, $id_estado, $lat, $lon, $titulo, $bajada, $foto, $contenido){ */
+    public function crearArticulo($articulo){
+        $titulo = $articulo["titulo"];
+        $bajada = $articulo["bajada"];
+        $contenido = $articulo["contenido"];
+        $id_usuario_creador = $articulo["id_usuario_creador"];
+        $id_estado = $articulo["id_estado"];
+        $lat = $articulo["lat"];
+        $lon = $articulo["lon"];
+        $fotos = $articulo["fotos"];
+        $id_edicionSeccion = $articulo["id_edicionSeccion"];
+        
+    
+        return $this->database->execute("INSERT INTO articulo (id_estado, id_edicionSeccion, id_usuarioCreador,lat ,lon ,titulo ,bajada ,fotos ,contenido) 
+                                        VALUES ($id_estado,$id_edicionSeccion, $id_usuario_creador, $lat, $lon, '$titulo', '$bajada', '$fotos', '$contenido');");
     }
     public function getLastPublicacion(){
         return $this->database->query("SELECT * FROM articulo WHERE id = (SELECT MAX(id) FROM articulo)");

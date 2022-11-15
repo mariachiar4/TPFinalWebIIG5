@@ -3,8 +3,8 @@
 <link rel="stylesheet" type="text/css" href="/public/styles/articulo.css">
 
 <section class="seccion-articulo">
-    <div class="white-title">
-        {{notificacion}}
+    <div>
+        <p class="error">{{notificacion}}</p>
     </div>
     <h2 class="text-center">
         {{#articulo}}Editar{{/articulo}}
