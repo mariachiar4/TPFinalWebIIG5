@@ -24,11 +24,6 @@ class ArticuloController {
     public function getArticulo(){
         $id = $_GET["id"];
         $articulo = $this->articuloModel->getArticulo($id);
-
-        /* $pepe = htmlentities($articulo[0]["contenido"]);
-        
-        $articulo[0]["contenido"] = html_entity_decode($pepe); */
-        //$articulo[0]["contenido"] = strip_tags($articulo[0]["contenido"]);
         
         echo $this->render->render("view/articulo/articulo.php", array("articulo" => $articulo));
     }
@@ -40,6 +35,8 @@ class ArticuloController {
     }
 
     public function procesarArticulo(){
+        var_dump($_POST);
+        return;
         $id_edicion_seccion = isset($_POST["id_seccion"]) ? $_POST["id_seccion"] : NULL;
         $id_usuario_creador = 1; // ver de crear una variable en session con los datos mas importante del usuario que se logueó
         $id_estado = 1; // por defecto 1? 
@@ -89,6 +86,7 @@ class ArticuloController {
         $id_articulo = $_GET["id"];
         $articulo = $this->articuloModel->getArticulo($id_articulo);
         $publicaciones = $this->publicacionModel->getPublicaciones();
+        $secciones = $this->seccionModel->getSecciones();
         foreach($publicaciones as &$publicacion){
             $publicacion["selected"] = false;
             if($publicacion["id"] == $articulo[0]["id_publicacion"]){

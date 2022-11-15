@@ -18,11 +18,9 @@
             <label class="form-label" for="id_publicacion">Publicación</label>
             
             <select name="id_publicacion" id="id_publicacion">
-                <option value="" disabled>Seleccione una publicación</option>
+                <option value="" disabled selected>Seleccione una publicación</option>
                 {{#publicaciones}}
-                    {{#articulo}}
-                        <option value="{{id}}" {{#selected}}selected{{/selected}}>{{nombre}}</option>
-                    {{/articulo}}
+                    <option value="{{id}}" {{#selected}}selected{{/selected}}>{{nombre}}</option>
                 {{/publicaciones}}
             </select>
         </div>
@@ -30,7 +28,6 @@
             <!-- Div que tiene que crearse por js al seleccionar la publicacion que queres. -->
             <label class="form-label" for="id_seccion">Sección</label>
             <select name="id_seccion" id="id_seccion">
-                <option value="" selected disabled>Seleccione una sección</option>
             </select>
         </div>
 
@@ -79,7 +76,13 @@
     })
 
     window.addEventListener("load", function(evento){
-        id_publicacion = 1 //document.getElementById("id_publicacion").value;
+        
+        id_publicacion = {{#articulo}} // si es editar
+                            {{id_publicacion}}
+                         {{/articulo}}
+                         {{^articulo}} // si es crear
+                            0
+                         {{/articulo}};
         if(id_publicacion != 0){
             obtenerSelectSecciones(id_publicacion);
         }
@@ -105,7 +108,7 @@
             let seccion_container = document.getElementById("id_seccion_container");
             if(secciones.length > 0){
                 let select_secciones = document.getElementById("id_seccion");
-                select_secciones.innerHTML = '<option value="" selected disabled>Seleccione una sección</option>';
+                select_secciones.innerHTML = '<option value="" disabled>Seleccione una sección</option>';
 
                 seccion_container.classList.remove("oculto"); 
                 let option = "";
@@ -114,6 +117,12 @@
                     option.value = seccion.id;
                     option.innerText = seccion.nombre;
                     select_secciones.appendChild(option);
+                    {{#articulo}}
+                        if({{id_seccion}} == seccion.id){
+                            // option.selected = true; equivale a la linea de abajo
+                            option.setAttribute("selected", true);
+                        } 
+                    {{/articulo}}
                 })
             }else{
                 seccion_container.classList.add("oculto");
