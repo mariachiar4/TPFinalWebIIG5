@@ -17,6 +17,7 @@ class UserModel
         $nombre = $data["nombre"];
         $email = $data["email"];
         $password = $data["password"];
+        $id_rol = $data["id_rol"];
         $hash = !empty($password) ? md5($password) : null;
         $lat = $data["lat"];
         $lon = $data["lon"];
@@ -25,7 +26,7 @@ class UserModel
         $usuarioEncontrado = $this->database->query("SELECT * FROM validacion WHERE email = '$email' ");
         
         if (count($usuarioEncontrado) === 0){
-            $usuarioAgregado = $this->database->execute("INSERT INTO usuario VALUES (null, '$nombre', $lat, $lon, '$email')"); 
+            $usuarioAgregado = $this->database->execute("INSERT INTO usuario VALUES (null, $id_rol, '$nombre', $lat, $lon, '$email')"); 
             if($usuarioAgregado > 0) return $this->database->execute("INSERT INTO validacion VALUES ('$email', '$hash', '$token', 0)") === 1 ? "registrado" : "error";
         
         } 
@@ -46,5 +47,9 @@ class UserModel
     public function verificarUsuario($token){
         return $this->database->execute("UPDATE validacion SET confirmado = 1 WHERE token = '$token'");
 
+    }
+
+    public function getRoles(){
+        return $this->database->query("SELECT * FROM rol WHERE id != 2");
     }
 }

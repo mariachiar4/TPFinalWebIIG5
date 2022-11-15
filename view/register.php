@@ -29,6 +29,13 @@ function getPosition(position) {
     <p><input name="password" type="password" placeholder="Password"></p>
     <input id="lat" name="lat" type="hidden" >
     <input id="lon" name="lon" type="hidden" >
+    {{#roles}}
+    <p>
+      <label for="id_rol">{{nombre}}</label>
+      <input type="radio" id="id_rol" name="id_rol" value="{{id}}">
+    </p>
+    {{/roles}}
     <p><input type="submit" value="Registrarse"></p>
+    
   </form>
 </div>

@@ -12,12 +12,14 @@ class UserController {
 
 
     public function registrarse(){
-        echo $this->render->render("view/register.php" );
+        $roles = $this->userModel->getRoles();
+        echo $this->render->render("view/register.php", array("roles" => $roles));
     }
 
     public function procesarRegistro(){
         $data["nombre"] = $_POST["nombre"];
         $data["email"]  = $_POST["email"];
+        $data["id_rol"]  = $_POST["id_rol"];
         $data["password"]  = $_POST["password"];
         $data["lat"]  = !empty($_POST["lat"]) ? $_POST["lat"] : 0;
         $data["lon"]  = !empty($_POST["lon"]) ? $_POST["lon"] : 0;
