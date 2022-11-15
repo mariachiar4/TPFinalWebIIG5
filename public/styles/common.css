@@ -124,6 +124,18 @@ body {
 .oculto {
   display: none;
 }
+
+.clima-container {
+  color: white;
+}
+
+.clima-viento-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 @media (max-width: 1400px) {
   .grid-edicion {
     width: auto;

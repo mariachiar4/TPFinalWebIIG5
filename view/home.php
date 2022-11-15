@@ -3,6 +3,13 @@
 <div class="main-container">
     <div class="titulo-container">
         <span class="titulo-deco">[</span><h1 class="titulo">Infonete</h1><span class="titulo-deco">]</span>
+        {{#pronostico}} 
+        <div class="clima-container">
+            <div>Temperatura {{temperature}}°C</div>
+            <div class="clima-viento-container"><span>Velocidad de Viento : {{windspeed}} Km/H</span>
+            <span style="font-size:20px;width:10px;display:flex;transform:rotate({{winddirection}}deg)">↑</span></div>
+        </div>
+        {{/pronostico}} 
     </div>
 
     
