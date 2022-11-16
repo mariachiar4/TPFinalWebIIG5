@@ -8,10 +8,39 @@ class Router{
         $this->configuration = $configuration;
     }
 
+    private function validarPermisos(){
+
+       $controllerBuscado = "user";
+       $metodoBuscado = "procesarRegistro";
+
+
+        $permisos = array(
+            "user"=>array(
+                "registrarse" => array("roles"=> array(1,2)),
+                "procesarRegistro" => array("roles"=> array(1,2)),
+                "procesarRegistro" => array("roles"=> array(1,2)),
+                "procesarRegistro" => array("roles"=> array(1,2)),
+                "procesarRegistro" => array("roles"=> array(1,2)),
+                "procesarRegistro" => array("roles"=> array(1,2)),
+
+            "publicacion" => array("getWeather","execute"))
+        );
+
+        $permisos[$controllerBuscado][$metodoBuscado];
+
+        return $permisos[$controllerBuscado][$metodoBuscado];
+
+    }
+
+
     public function executeActionFromModule($action, $module){
         $isLogueado = isset($_SESSION["logueado"]) ? true : false;
 
         if ($isLogueado){ // si esta logueado : dejar acceder a los checks de controllers y metodos
+            $usuario = $_SESSION["usuario"];
+
+            var_dump($this->validarPermisos());
+
             $controller = $this->getControllerFrom($module);
             $this->executeMethodFromController($controller,$action);
         } else if ($module === "user" && (
