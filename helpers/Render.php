@@ -13,7 +13,6 @@ class Render{
     }
 
     public function render($contentFile , $data = array() ){
-
         // CHEQUEA EN CADA RENDERIZADO EL ESTADO DE LA SESION
         $isLogged = isset($_SESSION["logueado"])? true : false;
         $usuario = isset($_SESSION["usuario"]) ? $_SESSION["usuario"][0] : "";
@@ -27,7 +26,7 @@ class Render{
                 $usuario["lector"] = true;
             }
         }
-
+        var_dump($usuario);
         $this->mustache->setHelpers([
 			"logueado" => $isLogged,
             "usuario" => $usuario
