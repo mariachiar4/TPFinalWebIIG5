@@ -26,7 +26,6 @@ class Render{
                 $usuario["lector"] = true;
             }
         }
-        var_dump($usuario);
         $this->mustache->setHelpers([
 			"logueado" => $isLogged,
             "usuario" => $usuario

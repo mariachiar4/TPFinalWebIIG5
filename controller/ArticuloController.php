@@ -28,10 +28,10 @@ class ArticuloController {
         echo $this->render->render("view/articulo/articulo.php", array("articulo" => $articulo));
     }
 
-    public function crearArticulo($notificacion = ""){
+    public function accionesArticulo($notificacion = ""){
         $publicaciones = $this->publicacionModel->getPublicaciones();
 
-        echo $this->render->render("view/articulo/crearArticulo.php", array("publicaciones" => $publicaciones, "notificacion" => $notificacion));
+        echo $this->render->render("view/articulo/accionesArticulo.php", array("publicaciones" => $publicaciones, "notificacion" => $notificacion));
     }
 
     private function getEdicionSeccion($id_edicion, $id_seccion ){
@@ -43,20 +43,23 @@ class ArticuloController {
     }
 
     public function procesarArticulo(){
+        $accion = $_POST["accion"];
         $articulo["titulo"] = $_POST["titulo"];
         $articulo["bajada"] = $_POST["bajada"];
         $articulo["contenido"] = $_POST["contenido"];
-        $articulo["id_usuario_creador"] = 1; // ver de crear una variable en session con los datos mas importante del usuario que se logueó
+        $articulo["id_usuario_creador"] = $_SESSION["usuario"][0]["id"]; // ver de crear una variable en session con los datos mas importante del usuario que se logueó
         $articulo["id_estado"] = 3; // 1 -> draft, 2 -> a publicar, 3 -> publicado , 4 -> dado de baja 
         $articulo["lat"] = 500.00;
         $articulo["lon"] = 500.00;
         $articulo["fotos"] = $this->procesar_imagen($_FILES["imagen"]);
-
-
+        if($accion == "editar"){
+            $articulo["id"] = $_POST["id"];
+        }
+        // ver como hacer en esta parte con la img 
         $errores_validacion = false;
         foreach($articulo as $valor){
             if($errores_validacion){
-                $this->crearArticulo("Hubo un error en la carga del articulo");
+                $this->accionesArticulo("Hubo un error en la carga del articulo");
                 exit;
             }
             $errores_validacion = $this->validacionArticulo($valor);
@@ -68,19 +71,20 @@ class ArticuloController {
             $id_edicion = $this->edicionModel->getUltimaEdicionDePublicacion($id_publicacion);
             $articulo["id_edicionSeccion"] = $this->getEdicionSeccion($id_edicion, $id_seccion);
         } else {
-            $this->crearArticulo("No se selecciono Publicacion o Seccion");
+            $this->accionesArticulo("No se selecciono Publicacion o Seccion");
             exit;
         }
        
-        $response = $this->articuloModel->crearArticulo($articulo);
+        $response = $accion == "crear" ? $this->articuloModel->crearArticulo($articulo) : $this->articuloModel->editarArticulo($articulo) ;
 
         if ($response == 1){
             header('Location: /user/panelAdmin');
             exit;
         } else {
-            $this->crearArticulo("No se pudo crear el articulo");
+            $accion == "crear" ? $this->accionesArticulo("No se pudo crear el articulo") : $this->accionesArticulo("No se pudo editar el articulo");
             exit;
-        }                
+        }        
+             
     }
 
     private function procesar_imagen($img){
@@ -93,8 +97,8 @@ class ArticuloController {
             move_uploaded_file($img["tmp_name"],$carpeta_destino . $nombre);
             return $nombre;
         } else {
-            $this->crearArticulo("No se reconoció la imagen correctamente");
-            exit;
+            //$this->accionesArticulo("No se reconoció la imagen correctamente");
+            //exit;
         }
     }
 
@@ -104,16 +108,21 @@ class ArticuloController {
     }
     public function editarArticulo(){
         $id_articulo = $_GET["id"];
-        $articulo = $this->articuloModel->getArticulo($id_articulo);
+        $articulo = $this->articuloModel->getArticulo($id_articulo)[0];
         $publicaciones = $this->publicacionModel->getPublicaciones();
         $secciones = $this->seccionModel->getSecciones();
         foreach($publicaciones as &$publicacion){
             $publicacion["selected"] = false;
-            if($publicacion["id"] == $articulo[0]["id_publicacion"]){
+            if($publicacion["id"] == $articulo["id_publicacion"]){
                 $publicacion["selected"] = true;
             }
         }
-        
-        echo $this->render->render("view/articulo/crearArticulo.php",array("articulo" => $articulo, "publicaciones" => $publicaciones));
+        echo $this->render->render("view/articulo/accionesArticulo.php",array("id_articulo" => $articulo["id_articulo"],
+                                                                           "id_publicacion" => $articulo["id_publicacion"],
+                                                                           "titulo" => $articulo["titulo"],
+                                                                           "bajada" => $articulo["bajada"], 
+                                                                           "img" => $articulo["fotos"],
+                                                                           "contenido" => $articulo["contenido"],
+                                                                           "publicaciones" => $publicaciones));
     }
 }
