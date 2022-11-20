@@ -13,13 +13,23 @@ class Render{
     }
 
     public function render($contentFile , $data = array() ){
-
         // CHEQUEA EN CADA RENDERIZADO EL ESTADO DE LA SESION
         $isLogged = isset($_SESSION["logueado"])? true : false;
-        $this->mustache->setHelpers([
-			'logueado' => $isLogged
-		]);
+        $usuario = isset($_SESSION["usuario"]) ? $_SESSION["usuario"][0] : "";
         
+        if($usuario != ""){
+            if($usuario["id_rol"] == 1){
+                $usuario["contenidista"] = true;
+            }else if($usuario["id_rol"] == 2){
+                $usuario["administrador"] = true;
+            }else{
+                $usuario["lector"] = true;
+            }
+        }
+        $this->mustache->setHelpers([
+			"logueado" => $isLogged,
+            "usuario" => $usuario
+		]);
         $contentAsString =  file_get_contents($contentFile);
         return  $this->mustache->render($contentAsString, $data);
     }

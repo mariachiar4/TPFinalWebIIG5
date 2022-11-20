@@ -22,7 +22,11 @@
         {{#logueado}}
           <div class="nav-header-container">
             <a class="w3-bar-item w3-button w3-padding-large" href="/">Home</a>
-            <a class="w3-bar-item w3-button w3-padding-large" href="/user/panelAdmin">Panel Admin</a>  
+            {{#usuario}}
+              {{^lector}}
+                <a class="w3-bar-item w3-button w3-padding-large" href="/user/panelAdmin">Panel</a>  
+              {{/lector}}
+            {{/usuario}}
           </div>
           <div class="nav-header-container justify-end">
             <a class="w3-bar-item w3-button w3-padding-large" href="/user/logout">Logout</a>

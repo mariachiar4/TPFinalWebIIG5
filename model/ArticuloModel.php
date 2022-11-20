@@ -9,7 +9,6 @@ class ArticuloModel
         $this->database = $database;
     }
 
-   /*  public function crearArticulo($id_edicion_seccion, $id_usuario_creador, $id_estado, $lat, $lon, $titulo, $bajada, $foto, $contenido){ */
     public function crearArticulo($articulo){
         $titulo = $articulo["titulo"];
         $bajada = $articulo["bajada"];
@@ -21,9 +20,36 @@ class ArticuloModel
         $fotos = $articulo["fotos"];
         $id_edicionSeccion = $articulo["id_edicionSeccion"];
         
-    
         return $this->database->execute("INSERT INTO articulo (id_estado, id_edicionSeccion, id_usuarioCreador,lat ,lon ,titulo ,bajada ,fotos ,contenido) 
                                         VALUES ($id_estado,$id_edicionSeccion, $id_usuario_creador, $lat, $lon, '$titulo', '$bajada', '$fotos', '$contenido');");
+    }
+    public function editarArticulo($articulo){
+        $id = $articulo["id"];
+        $titulo = $articulo["titulo"];
+        $bajada = $articulo["bajada"];
+        $contenido = $articulo["contenido"];
+        $id_estado = $articulo["id_estado"];
+        $lat = $articulo["lat"];
+        $lon = $articulo["lon"];
+        $fotos = $articulo["fotos"];
+        $id_edicionSeccion = $articulo["id_edicionSeccion"];
+        
+        $sql = "UPDATE articulo 
+                    SET titulo = '$titulo',
+                        bajada = '$bajada',
+                        contenido = '$contenido',
+                        id_estado = $id_estado,
+                        lat = $lat,
+                        lon = $lon,";
+        if($fotos != null){
+            $sql .= "fotos = '$fotos',";
+        }
+        $sql .= "id_edicionSeccion = $id_edicionSeccion
+                WHERE id = $id";
+
+        
+        return $this->database->execute($sql);
+    
     }
     public function getLastPublicacion(){
         return $this->database->query("SELECT * FROM articulo WHERE id = (SELECT MAX(id) FROM articulo)");

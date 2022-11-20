@@ -1,16 +1,6 @@
 {{> header}}
 <link rel="stylesheet" href="/public/styles/publicacion.css">
 <!-- Nav secciones -->
-<section>
-    <nav>
-        <ul class="secciones-container">
-            <a class="secciones-item" href="/publicacion/getPublicacion/id={{id}}"><li>Todos</li></a>
-        {{#secciones}} 
-            <a class="secciones-item" href="/publicacion/getPublicacion/id={{id}}"><li>{{nombre}}</li></a>
-        {{/secciones}} 
-        </ul>
-    </nav>
-</section>
 
 <section class="publicaciones-principales-container">
     {{#articulos}}
