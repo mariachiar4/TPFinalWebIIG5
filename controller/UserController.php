@@ -127,10 +127,6 @@ class UserController {
         echo $this->render->render("view/panelAdmin.php");
     }
 
-    public function mapa(){
-        echo $this->render->render("view/mapa.php");
-    }
-    
     public function pdfContenidistas (){
         $contenidistas = $this->userModel->getUsuariosPorRol(1);
         // instantiate and use the dompdf class
