@@ -122,12 +122,6 @@ crossorigin=""></script>
             {{/usuario}}
         {{/lat}}
 
-
-        
-        
-
-        
-
     var map = L.map("map").setView([lat, lon], 10); // coordenadas del usuario
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -136,15 +130,15 @@ crossorigin=""></script>
     }).addTo(map);
 
     var marker = L.marker([lat, lon]).addTo(map);
-    var lat = document.getElementById("lat");
-    var lon = document.getElementById("lon");
-    lat.value = lat;
-    lon.value = lon;
+    var latElement = document.getElementById("lat");
+    var lonElement = document.getElementById("lon");
+    latElement.value = lat;
+    lonElement.value = lon;
 
     function onMapClick(e) {
-    marker.setLatLng([e.latlng.lat, e.latlng.lng]);
-    lat.value = e.latlng.lat;
-    lon.value = e.latlng.lng;
+        marker.setLatLng([e.latlng.lat, e.latlng.lng]);
+        latElement.value = e.latlng.lat;
+        lonElement.value = e.latlng.lng;
     }
 
     map.on("click", onMapClick);

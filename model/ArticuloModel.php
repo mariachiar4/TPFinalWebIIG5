@@ -29,24 +29,24 @@ class ArticuloModel
         $bajada = $articulo["bajada"];
         $contenido = $articulo["contenido"];
         $id_estado = $articulo["id_estado"];
-        // $lat = $articulo["lat"];
-        // $lon = $articulo["lon"];
+        $lat = $articulo["lat"];
+        $lon = $articulo["lon"];
         $fotos = $articulo["fotos"];
         $id_edicionSeccion = $articulo["id_edicionSeccion"];
         
         $sql = "UPDATE articulo 
                     SET titulo = '$titulo',
                         bajada = '$bajada',
-                        contenido = '$bajada',
-                        id_estado = $id_estado,";
+                        contenido = '$contenido',
+                        id_estado = $id_estado,
+                        lat = $lat,
+                        lon = $lon,";
         if($fotos != null){
             $sql .= "fotos = '$fotos',";
         }
         $sql .= "id_edicionSeccion = $id_edicionSeccion
                 WHERE id = $id";
 
-        var_dump($sql);
-        return;
         
         return $this->database->execute($sql);
     

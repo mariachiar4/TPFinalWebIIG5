@@ -57,11 +57,17 @@ class ArticuloController {
         }
         // ver como hacer en esta parte con la img 
         $errores_validacion = false;
-        foreach($articulo as $valor){
-            if($errores_validacion){
-                $this->accionesArticulo("Hubo un error en la carga del articulo");
-                exit;
+        foreach($articulo as $clave => $valor){
+            if($accion == "editar" && $clave == "fotos"){
+                break;
+            } else {
+                if($errores_validacion){
+                    $this->accionesArticulo("Hubo un error en la carga del articulo");
+                    exit;
+                }
             }
+
+
             $errores_validacion = $this->validacionArticulo($valor);
         }
                 
