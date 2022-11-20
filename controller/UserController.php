@@ -1,5 +1,7 @@
 <?php
 
+use Dompdf\Dompdf;
+require_once 'third-party/dompdf/autoload.inc.php';
 
 class UserController {
     private $userModel;
@@ -129,5 +131,131 @@ class UserController {
         echo $this->render->render("view/mapa.php");
     }
     
-  
+    public function pdfContenidistas (){
+        $contenidistas = $this->userModel->getUsuariosPorRol(1);
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+        ob_start()
+        ?>
+        <!doctype html>
+        <html lang="es">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
+        <body>
+           <?php date_default_timezone_set("America/Argentina/Buenos_Aires");
+                echo "Informe al : " . date("d-m-Y h:i:sa");
+                ?>
+            <br>
+            <br>
+            <h3>Contenidistas</h3>
+            <table border="1">
+                <tr>
+                    <td>ID</td>
+                    <td>Nombre</td>
+                    <td>Lat</td>
+                    <td>Lon</td>
+                    <td>Email</td>
+                </tr>
+                <?php 
+                foreach ($contenidistas as $value) {?>
+                <tr>
+                    <td>
+                        <?php echo $value["id"]; ?>
+                    </td>
+                    <td>
+                        <?php echo $value["nombre"]; ?>
+                    </td>
+                    <td>
+                        <?php echo $value["lat"]; ?>
+                    </td>
+                    <td>
+                        <?php echo $value["lon"]; ?>
+                    </td>
+                    <td>
+                        <?php echo $value["email"]; ?>
+                    </td>
+                </tr><?php
+                }
+                ?>
+            </table>
+        </body>
+        </html>
+        <?php
+        $html = ob_get_clean();
+        $dompdf->loadHtml(utf8_decode($html));
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+        // Render the HTML as PDF
+        $dompdf->render();
+        // Output the generated PDF to Browser
+        $dompdf->stream("Contenidistas.pdf", ['Attachment' => 1]);
+    }
+
+    public function pdfLectores (){
+        $lectores = $this->userModel->getUsuariosPorRol(3);
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+        ob_start()
+        ?>
+        <!doctype html>
+        <html lang="es">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
+        <body>
+           <?php date_default_timezone_set("America/Argentina/Buenos_Aires");
+                echo "Informe al : " . date("d-m-Y h:i:sa");
+                ?>
+            <br>
+            <br>
+            <h3>Lectores</h3>
+            <table border="1">
+                <tr>
+                    <td>ID</td>
+                    <td>Nombre</td>
+                    <td>Lat</td>
+                    <td>Lon</td>
+                    <td>Email</td>
+                </tr>
+                <?php 
+                foreach ($lectores as $value) {?>
+                <tr>
+                    <td>
+                        <?php echo $value["id"]; ?>
+                    </td>
+                    <td>
+                        <?php echo $value["nombre"]; ?>
+                    </td>
+                    <td>
+                        <?php echo $value["lat"]; ?>
+                    </td>
+                    <td>
+                        <?php echo $value["lon"]; ?>
+                    </td>
+                    <td>
+                        <?php echo $value["email"]; ?>
+                    </td>
+                </tr><?php
+                }
+                ?>
+            </table>
+        </body>
+        </html>
+        <?php
+        $html = ob_get_clean();
+        $dompdf->loadHtml(utf8_decode($html));
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+        // Render the HTML as PDF
+        $dompdf->render();
+        // Output the generated PDF to Browser
+        $dompdf->stream("Lectores.pdf", ['Attachment' => 1]);
+    }
+        
+
 }

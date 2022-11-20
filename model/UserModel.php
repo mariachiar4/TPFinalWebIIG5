@@ -52,4 +52,8 @@ class UserModel
     public function getRoles(){
         return $this->database->query("SELECT * FROM rol WHERE id != 2");
     }
+
+    public function getUsuariosPorRol($id_rol){
+        return $this->database->query("SELECT * FROM usuario WHERE id_rol = $id_rol");
+    }
 }
