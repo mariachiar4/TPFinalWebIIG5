@@ -2,6 +2,16 @@
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <link rel="stylesheet" type="text/css" href="/public/styles/articulo.css">
 
+<!-- leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+crossorigin=""></script>
+
+    
+
 <section class="seccion-articulo">
     <div>
         <p class="error">{{notificacion}}</p>
@@ -13,7 +23,16 @@
         <!-- el segundo pregunta si NO existe , imprime CREAR-->
         Artículo
     </h2>
+    
+    <!-- leaflet -->
+    <div style="height: 250px; max-width: 500px; margin: auto;" id="map"></div>
+    <!-- leaflet -->
+
     <form id="form" class="form-container" action="/articulo/procesarArticulo" method="POST" enctype="multipart/form-data">
+
+    
+
+        
         <div class="form-element">
             <label class="form-label" for="id_publicacion">Publicación</label>
             
@@ -64,6 +83,11 @@
             <label class="form-label" for="contenido">Contenido</label>
             <textarea id="contenido" name="contenido" cols="30" rows="10">{{contenido}}</textarea>
         </div>
+        
+        <div>
+            <input id="lat" type="hidden" name="lat">
+            <input id="lon" type="hidden" name="lon">
+        </div>
 
         <div>
             {{#id_articulo}}
@@ -81,6 +105,35 @@
     </form>
 </section>
 
+<!-- leaflet -->
+<script>
+        {{#usuario}}
+            var userLat = {{lat}};
+            var userLon = {{lon}};
+        {{/usuario}}
+
+    var map = L.map("map").setView([userLat, userLon], 10); // coordenadas del usuario
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    var marker = L.marker([userLat, userLon]).addTo(map);
+    var lat = document.getElementById("lat");
+    var lon = document.getElementById("lon");
+    lat.value = userLat;
+    lon.value = userLon;
+
+    function onMapClick(e) {
+    marker.setLatLng([e.latlng.lat, e.latlng.lng]);
+    lat.value = e.latlng.lat;
+    lon.value = e.latlng.lng;
+    }
+
+    map.on("click", onMapClick);
+</script>
+<!-- leaflet -->
 
 <script>
     let select_publicaciones = document.getElementById("id_publicacion");
