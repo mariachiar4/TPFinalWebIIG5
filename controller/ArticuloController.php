@@ -124,6 +124,8 @@ class ArticuloController {
                                                                            "bajada" => $articulo["bajada"], 
                                                                            "img" => $articulo["fotos"],
                                                                            "contenido" => $articulo["contenido"],
+                                                                           "lat" => $articulo["lat"],
+                                                                           "lon" => $articulo["lon"],
                                                                            "publicaciones" => $publicaciones));
     }
 }

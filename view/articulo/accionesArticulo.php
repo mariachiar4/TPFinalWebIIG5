@@ -78,7 +78,6 @@ crossorigin=""></script>
         </div>
 
 
-
         <div class="form-element">
             <label class="form-label" for="contenido">Contenido</label>
             <textarea id="contenido" name="contenido" cols="30" rows="10">{{contenido}}</textarea>
@@ -107,23 +106,40 @@ crossorigin=""></script>
 
 <!-- leaflet -->
 <script>
-        {{#usuario}}
-            var userLat = {{lat}};
-            var userLon = {{lon}};
-        {{/usuario}}
+        var lat;
+        var lon;
 
-    var map = L.map("map").setView([userLat, userLon], 10); // coordenadas del usuario
+        {{#lat}}
+            lat = {{lat}}
+            lon = {{lon}};
+        {{/lat}}
+
+      
+        {{^lat}}
+            {{#usuario}}
+                lat ={{lat}}
+                lon ={{lon}}
+            {{/usuario}}
+        {{/lat}}
+
+
+        
+        
+
+        
+
+    var map = L.map("map").setView([lat, lon], 10); // coordenadas del usuario
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    var marker = L.marker([userLat, userLon]).addTo(map);
+    var marker = L.marker([lat, lon]).addTo(map);
     var lat = document.getElementById("lat");
     var lon = document.getElementById("lon");
-    lat.value = userLat;
-    lon.value = userLon;
+    lat.value = lat;
+    lon.value = lon;
 
     function onMapClick(e) {
     marker.setLatLng([e.latlng.lat, e.latlng.lng]);
