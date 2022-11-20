@@ -1,5 +1,8 @@
 <?php
 
+use Dompdf\Dompdf;
+require_once 'third-party/dompdf/autoload.inc.php';
+
 // al crear un controller hay que crear:
 /*
     model
@@ -133,5 +136,52 @@ class ArticuloController {
                                                                            "lat" => $articulo["lat"],
                                                                            "lon" => $articulo["lon"],
                                                                            "publicaciones" => $publicaciones));
+    }
+
+    public function pdfArticulo (){
+        $id = $_GET["id"];
+        $articulo = $this->articuloModel->getArticulo($id);
+        
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+        ob_start()
+        ?>
+        <!doctype html>
+        <html lang="es">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
+        <body>
+           <?php date_default_timezone_set("America/Argentina/Buenos_Aires");
+                echo "Articulo al : " . date("d-m-Y h:i:sa");
+                ?>
+            <br>
+            <br>
+            <h4>
+                <?php echo $articulo[0]["seccion"]; ?>
+            </h4>
+            <h2>
+                <?php echo $articulo[0]["titulo"]; ?>
+            </h2>
+            <h4>
+               <?php echo $articulo[0]["bajada"]; ?>
+            </h4>
+
+            <div>
+                <?php echo $articulo[0]["contenido"]; ?>
+            </div>
+        </body>
+        </html>
+        <?php
+        $html = ob_get_clean();
+        $dompdf->loadHtml(utf8_decode($html));
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+        // Render the HTML as PDF
+        $dompdf->render();
+        // Output the generated PDF to Browser
+        $dompdf->stream("Articulo.pdf", ['Attachment' => 1]);
     }
 }

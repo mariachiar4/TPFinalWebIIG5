@@ -9,6 +9,10 @@ integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
 crossorigin=""></script>
 
 <div class="page-container">
+    <div style="display: flex; justify-content: end;margin-bottom:1rem;font-size:1.2rem;">
+        <a style="color:black;border-radius:32px; background-color: white; padding-block: 0.3rem; padding-inline: 0.5rem;" 
+        href="/articulo/pdfArticulo?id={{#articulo}}{{id_articulo}}{{/articulo}}" target="__blank" rel="noopener noreferrer">Exportar</a>
+    </div>
     <div class="articulo-container">
         {{#articulo}}
         <div class="header-articulo">
