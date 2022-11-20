@@ -1,5 +1,5 @@
 {{> header}}
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/9thkoqot0oqisntx0oifblmx661pelatzxex6g4qdqh76x9q/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <link rel="stylesheet" type="text/css" href="/public/styles/articulo.css">
 
 <!-- leaflet -->
