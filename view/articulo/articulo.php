@@ -18,7 +18,7 @@ crossorigin=""></script>
         <div class="header-articulo">
             <div >
                 <h4 class="blue-text">{{seccion}}</h4>
-                <h2 class="titulo-articulo"><img title="lat: {{lat}} lon: {{lon}}" class="location-pin" src="/public/img/locationpin.png">{{titulo}}</h2>
+                <h2 class="titulo-articulo">{{titulo}}</h2>
                 <h3 class="bajada-articulo">{{bajada}}</h3>
             </div>
 
