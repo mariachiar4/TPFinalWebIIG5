@@ -64,6 +64,15 @@ body {
   grid-column-gap: 0px;
   grid-row-gap: 0.5rem;
 }
+.grid-usuarios{
+  width: 80%;
+  margin: auto;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-column-gap: 0px;
+  grid-row-gap: 0.5rem;
+}
 
 .grid-publicacion {
   width: 80%;

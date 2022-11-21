@@ -22,12 +22,13 @@ class UserModel
         $lat = $data["lat"];
         $lon = $data["lon"];
         $token = $data["token"];
+        $confirmado = $data["confirmado"];
 
         $usuarioEncontrado = $this->database->query("SELECT * FROM validacion WHERE email = '$email' ");
         
         if (count($usuarioEncontrado) === 0){
             $usuarioAgregado = $this->database->execute("INSERT INTO usuario VALUES (null, $id_rol, '$nombre', $lat, $lon, '$email')"); 
-            if($usuarioAgregado > 0) return $this->database->execute("INSERT INTO validacion VALUES ('$email', '$hash', '$token', 0)") === 1 ? "registrado" : "error";
+            if($usuarioAgregado > 0) return $this->database->execute("INSERT INTO validacion VALUES ('$email', '$hash', '$token', $confirmado)") === 1 ? "registrado" : "error";
         
         } 
         return "usuarioExistente";
@@ -55,5 +56,18 @@ class UserModel
 
     public function getUsuariosPorRol($id_rol){
         return $this->database->query("SELECT * FROM usuario WHERE id_rol = $id_rol");
+    }
+    public function getUsuarios(){
+        return $this->database->query("SELECT u.id, r.nombre as rol, u.nombre, u.email FROM usuario u
+                                       LEFT JOIN rol r ON r.id = u.id_rol 
+                                       WHERE r.id != 2");
+    }
+
+    public function editarUsuario($id, $nombre){
+        return $this->database->execute("UPDATE usuario SET nombre = '$nombre' WHERE id = $id");
+    }
+    public function eliminarUsuario($id, $email){
+        $usuarioEliminado = $this->database->execute("DELETE FROM usuario WHERE id = $id");
+        if($usuarioEliminado > 0) return $this->database->execute("DELETE FROM validacion WHERE email = '$email'");
     }
 }

@@ -17,15 +17,43 @@ class UserController {
         echo $this->render->render("view/register.php");
     }
 
+    public function registrarContenidista(){
+        echo $this->render->render("view/registrarContenidista.php");
+    }
+    public function procesarRegistroContenidista(){
+        $data["nombre"] = $_POST["nombre"];
+        $data["email"]  = $_POST["email"];
+        $data["id_rol"]  = 1;
+        $data["password"]  = $_POST["password"];
+        $data["lat"]  = 0;
+        $data["lon"]  = 0;
+        $data["confirmado"] = 1;
+        $data["token"] = "";
+        $errores_validacion = false;
+        foreach($data as $clave => $valor){
+            if($errores_validacion){
+                break;
+            }
+            $errores_validacion = $this->validacion($clave, $valor);
+        }
+        $resultadoRegistro = $this->userModel->insertarUsuario($data);
+
+        if ($resultadoRegistro === "registrado"){
+            echo $this->render->render("view/panelAdmin.php");
+        } else {
+            echo $this->render->render("view/registradoError.php", array("error" => $resultadoRegistro));
+        }
+    }
+    // procesa el registro del Lector
     public function procesarRegistro(){
         $data["nombre"] = $_POST["nombre"];
         $data["email"]  = $_POST["email"];
-        $data["id_rol"]  = $_POST["id_rol"];
+        $data["id_rol"]  = 3;
         $data["password"]  = $_POST["password"];
         $data["lat"]  = !empty($_POST["lat"]) ? $_POST["lat"] : 0;
         $data["lon"]  = !empty($_POST["lon"]) ? $_POST["lon"] : 0;
-       
-        
+        $data["confirmado"] = 0;
+
         $errores_validacion = false;
         foreach($data as $clave => $valor){
             if($errores_validacion){
@@ -252,5 +280,29 @@ class UserController {
         $dompdf->stream("Lectores.pdf", ['Attachment' => 1]);
     }
         
+
+    public function accionesUsuarios($notificacion = null){
+        $usuarios = $this->userModel->getUsuarios();
+        echo $this->render->render("view/accionesUsuarios.php", array("usuarios" => $usuarios, "notificacion" => $notificacion));
+    }
+
+    public function procesarAccionUsuario(){
+        $id = $_POST["id"];
+        $nombre = $_POST["nombre"];
+        $email = $_POST["email"];
+        $accion = $_POST["accion"];
+
+        if($accion == "Editar"){
+            $response = $this->userModel->editarUsuario($id, $nombre);
+            $this->accionesUsuarios($response === 1 ? "Editado Correcto de id: $id" : "No se ha podido editar");
+            exit;
+
+        }else{
+            $response = $this->userModel->eliminarUsuario($id, $email);
+            $this->accionesUsuarios($response === 1 ? "Eliminado Correcto de id: $id" : "No se ha podido eliminar");
+            exit;
+        }
+    }
+
 
 }

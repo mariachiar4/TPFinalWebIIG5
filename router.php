@@ -13,7 +13,11 @@ class Router{
         $permisos = array(
             "user"=>array(
                 "registrarse" => array("roles"=> array(), "requiereLogin" => false),
+                "registrarContenidista" => array("roles"=> array(2), "requiereLogin" => true),
+                "procesarRegistroContenidista" => array("roles"=> array(2), "requiereLogin" => true),
                 "procesarRegistro" => array("roles"=> array(), "requiereLogin" => false),
+                "accionesUsuarios" => array("roles"=> array(2), "requiereLogin" => true),
+                "procesarAccionUsuario" => array("roles"=> array(2), "requiereLogin" => true),
                 "verificarUsuario" => array("roles"=> array(), "requiereLogin" => false),
                 "login" => array("roles"=> array(), "requiereLogin" => false),
                 "procesarLogin" => array("roles"=> array(), "requiereLogin" => false),
