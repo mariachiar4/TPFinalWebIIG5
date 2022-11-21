@@ -14,8 +14,7 @@ class UserController {
 
 
     public function registrarse(){
-        $roles = $this->userModel->getRoles();
-        echo $this->render->render("view/register.php", array("roles" => $roles));
+        echo $this->render->render("view/register.php");
     }
 
     public function procesarRegistro(){

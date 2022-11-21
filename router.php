@@ -18,7 +18,7 @@ class Router{
                 "login" => array("roles"=> array(), "requiereLogin" => false),
                 "procesarLogin" => array("roles"=> array(), "requiereLogin" => false),
                 "logout" => array("roles"=> array(), "requiereLogin" => false),
-                "panelAdmin" => array("roles"=> array(2), "requiereLogin" => true),
+                "panelAdmin" => array("roles"=> array(1,2), "requiereLogin" => true),
                 "pdfContenidistas" => array("roles"=> array(2), "requiereLogin" => true),
                 "pdfLectores" => array("roles"=> array(2), "requiereLogin" => true)
             ),
@@ -46,7 +46,7 @@ class Router{
                 "pdfArticulo" => array("roles"=> array(1,2,3), "requiereLogin" => true),
             )
         );
-
+            
         $requireLogin = $permisos[!empty($controller) ? $controller : "publicacion" ][$metodo]["requiereLogin"];
         
         if ($requireLogin){ //si el metodo requiere estar logueado => se controla que su rol tenga permitido el acceso
@@ -62,7 +62,6 @@ class Router{
         } else { // si el metodo no requiere estar logueado => se deja continuar la navegacion
             return true;
         }
-
     }
 
 

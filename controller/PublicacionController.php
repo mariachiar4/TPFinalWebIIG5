@@ -15,9 +15,11 @@ class PublicacionController {
 
     private function getWeather(){
         $curl = curl_init();
+        $lat = $_SESSION["usuario"][0]["lat"];
+        $lon = $_SESSION["usuario"][0]["lon"];
 
         curl_setopt_array($curl, array(
-          CURLOPT_URL => 'https://api.open-meteo.com/v1/forecast?latitude=-34.6118&longitude=-58.4173&current_weather=true', //cookies de usuario -> lat / lon
+          CURLOPT_URL => "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$lon&current_weather=true", //cookies de usuario -> lat / lon
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => '',
           CURLOPT_MAXREDIRS => 10,
@@ -32,7 +34,7 @@ class PublicacionController {
         curl_close($curl);
         
         $response = json_decode($response,true);
-        $current = $response["current_weather"];
+        $current = isset($response["current_weather"]) ? $response["current_weather"] : null;
         return $current;
     }
 

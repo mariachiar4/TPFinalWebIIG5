@@ -10,8 +10,8 @@ CREATE TABLE `usuario` (
   `email` varchar(60) NOT NULL
 );
 
-INSERT INTO `usuario` (`nombre`,`id_rol`,`email` )
-VALUES ('Admin', 2, 'tpfinalwebiig5@gmail.com');
+INSERT INTO `usuario` (`nombre`,`id_rol`,`lat`, `lon`, `email`)
+VALUES ('Admin', 2, -34.6403247, -58.5658212, 'tpfinalwebiig5@gmail.com');
 
 CREATE TABLE `validacion` (
   `email` varchar(60) NOT NULL PRIMARY KEY,
