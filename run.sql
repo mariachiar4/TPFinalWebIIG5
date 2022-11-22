@@ -11,7 +11,7 @@ CREATE TABLE `usuario` (
 );
 
 INSERT INTO `usuario` (`nombre`,`id_rol`,`lat`, `lon`, `email`)
-VALUES ('Admin', 2, -34.6403247, -58.5658212, 'tpfinalwebiig5@gmail.com');
+VALUES ('Admin', 2, -34.6403247, -58.5658212, 'tpfinalwebiig5@gmail.com'), ('Nicolas', 1, -34.6403247, -58.5658212, 'nicolas.ariel.maldonado@gmail.com');
 
 CREATE TABLE `validacion` (
   `email` varchar(60) NOT NULL PRIMARY KEY,
@@ -21,7 +21,7 @@ CREATE TABLE `validacion` (
 );
 
 INSERT INTO `validacion` (`email`,`contrasena`,`confirmado`)
-VALUES ('tpfinalwebiig5@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 1);
+VALUES ('tpfinalwebiig5@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 1),('nicolas.ariel.maldonado@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 1);
 
 CREATE TABLE `catalogo` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -136,6 +136,10 @@ CREATE TABLE `edicion` (
   `fecha_creacion` datetime NOT NULL,
   `precio` double NOT NULL
 );
+
+INSERT INTO `edicion` (`id_publicacion`,`nombre`,`fecha_creacion`, `precio`)
+VALUES (1, "Edicion 22/11/2022", '2022-11-17 00:01:14', 500);
+
 CREATE TABLE `seccion` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `nombre` varchar(50) NOT NULL
@@ -154,6 +158,9 @@ CREATE TABLE `edicion_seccion` (
   `id_edicion` int(11) NOT NULL,
   `id_seccion` int(11) NOT NULL
 );
+
+INSERT INTO `edicion_seccion` (`id_edicion`,`id_seccion`)
+VALUES (1, 1),(1, 2) ,(1, 3);
 
 CREATE TABLE `rol` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -202,9 +209,8 @@ CREATE TABLE `articulo` (
   `contenido` text NOT NULL
 );
 
-
-
-
-
-
-
+INSERT INTO `articulo` (`id_estado`, `id_edicionSeccion`, `id_usuarioCreador`, `lat`, `lon`, `titulo`, `bajada`, `fotos`, `contenido`)
+VALUES 
+(3,1,2,50.4528093,30.5950632, "Guerra Rusia-Ucrania", "Restablecido el transporte de pasajeros en barco tras un ataque con drones en Crimea", "UNYWVILFGNETPBECITYICTGHTI.webp", "El transporte de pasajeros en barco ha quedado restablecido este martes después de que se haya interrumpido de forma breve tras registrarse un ataque con drones en la ciudad de Sebastopol, en Crimea, que se ha saldado con dos vehículos no tripulados derribados. La Dirección para el Desarrollo de la Infraestructura de Transporte por Carretera de Sebastopol ha informado de que el tráfico se ha restablecido después de que el servicio quedase paralizado por razones de seguridad ante un ataque con drones en la ciudad."),
+(3,2,2, -34.5687087, -58.4653407, "El método “antiage” de un grupo de mujeres que intriga a los vecinos de Belgrano R", "Con un promedio de 80 años, bailan en la Plaza Castelli todos los domingos, a las 11; mantenerse activas física y mentalmente es la gran guía","HGTO25CG4REOPLW53F7GTVY7WA.webp", "“Bailamos porque nos hace sentir vivos”, explica Gustavo Zunino, el coordinador, de 53 años, cuando alguien se acerca a ver ese espectáculo que tiene embelesados a los vecinos de Belgrano. Un grupo de casi 20 autodenominadas “bataclanas”, con un promedio de 80 años, se junta todos los domingos en la Plaza Castelli, a metros de la estación de Belgrano R, para bailar. A veces, vestidas para charlestón, con plumas y coronitas. Otras , con tutús y badanas, para hacer danza clásica. Llevan música y aunque llueva o haya mucho sol se dedican a disfrutar. No les importa ni les preocupa quién las mire."),
+(3,3,2, -34.6082106, -58.3817415, "Se vende Edesur: las razones por las cuales Enel se va de la Argentina", "El grupo italiano anunció hoy que venderá sus activos en la Argentina, que incluye la concesión de la distribuidora Edesur, las generadoras Generación Costanera y Dock Sud","LKPR5SIGOZFWFHWFHXW2FOBSLE.webp", "Para entender la salida del país de la empresa italiana Enel, a cargo de la concesión de Edesur, hay que recordar las palabras que dijo hace un año el CEO y general manager de la empresa a nivel mundial, Francesco Starace: “Nuestra posición es quedarnos en la Argentina y ver qué pasa. No queremos irnos, queremos saber cuál es la política [energética] que adoptará [el Gobierno] el año que viene, y según eso veremos cuál es la mejor decisión para nosotros”."   )
