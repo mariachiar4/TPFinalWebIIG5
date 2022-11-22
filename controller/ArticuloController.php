@@ -52,8 +52,7 @@ class ArticuloController {
         $articulo["contenido"] = $_POST["contenido"];
         $articulo["id_usuario_creador"] = $_SESSION["usuario"][0]["id"]; // ver de crear una variable en session con los datos mas importante del usuario que se logueó
         $articulo["id_estado"] = 3; // 1 -> draft, 2 -> a publicar, 3 -> publicado , 4 -> dado de baja 
-        $articulo["lat"] = $_POST["lat"];
-        $articulo["lon"] = $_POST["lon"];
+
         $articulo["fotos"] = $this->procesar_imagen($_FILES["imagen"]);
         if($accion == "editar"){
             $articulo["id"] = $_POST["id"];
@@ -83,6 +82,9 @@ class ArticuloController {
             $this->accionesArticulo("No se selecciono Publicacion o Seccion");
             exit;
         }
+
+        $articulo["lat"] = $_POST["lat"];
+        $articulo["lon"] = $_POST["lon"];
        
         $response = $accion == "crear" ? $this->articuloModel->crearArticulo($articulo) : $this->articuloModel->editarArticulo($articulo) ;
 
