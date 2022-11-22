@@ -39,7 +39,8 @@ class UserController {
         $resultadoRegistro = $this->userModel->insertarUsuario($data);
 
         if ($resultadoRegistro === "registrado"){
-            echo $this->render->render("view/panelAdmin.php");
+            $this->accionesUsuarios("Contenidista creado exitosamente");
+            exit;
         } else {
             echo $this->render->render("view/registradoError.php", array("error" => $resultadoRegistro));
         }
