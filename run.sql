@@ -48,7 +48,7 @@ CREATE TABLE `publicacion` (
 );
 
 INSERT INTO `publicacion`( `nombre`, `descripcion`, `tipo_catalogo`, `precio_suscripcion`,`facebook_url`,`instagram_url`,`twitter_url`,`link_url`,`color`) 
-VALUES ('La Nacion',
+VALUES ('La Nación',
       'LA NACION ofrece las últimas noticias, fotos y videos de la Argentina y el mundo. Política, economía, deportes y toda la información en tiempo real.',
       2,
       500.00,

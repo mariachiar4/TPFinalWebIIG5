@@ -15,8 +15,8 @@
             <div class="two-column-grid">
                 {{#secciones}} 
                 <div>
-                    <input type="checkbox" name="id_secciones[]" id="id_secciones" value={{id}}>
-                    <span class="form-label">{{nombre}}</span>
+                    <input type="checkbox" name="id_secciones[]" id="id_secciones_{{id}}" value={{id}}>
+                    <label class="form-label" for="id_secciones_{{id}}">{{nombre}}</label>
                 </div>
                 {{/secciones}} 
             </div>
