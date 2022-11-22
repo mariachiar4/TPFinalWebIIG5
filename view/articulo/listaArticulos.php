@@ -17,13 +17,15 @@
         <div class="white-title"></div>
 
     {{#articulos}} 
-        <div>{{id}}</div>
-        <div>{{titulo}}</div>
-        <div>{{usuarioCreador}}</div>
-        <div>{{edicion}}</div>
-        <div>{{seccion}}</div>
-        <div>{{publicacion}}</div>
-        <a href="/articulo/editarArticulo?id={{id}}">Editar artículo</a>
+    <form action="/articulo/editarArticulo?id={{id}}" method="post" class="contents" style='background-color:{{color}}'>
+        <div class="pepe">{{id}}</div>
+        <div class="pepe">{{titulo}}</div>
+        <div class="pepe">{{usuarioCreador}}</div>
+        <div class="pepe">{{edicion}}</div>
+        <div class="pepe">{{seccion}}</div>
+        <div class="pepe">{{publicacion}}</div>
+        <input class="w-full" type="submit" value='Editar artículo'>
+        </form>
     {{/articulos}} 
 
     </div>
