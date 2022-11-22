@@ -98,7 +98,7 @@ crossorigin=""></script>
 
             {{^id_articulo}}
                 <input type="hidden" name="accion" value="crear">
-                <input class="margin-top" type="submit" value="Editar Artículo">
+                <input class="margin-top" type="submit" value="Crear Artículo">
             {{/id_articulo}}
         </div>
     </form>
