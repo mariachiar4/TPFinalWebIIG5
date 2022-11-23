@@ -305,5 +305,19 @@ class UserController {
         }
     }
 
+    public function suscripcion(){
+        $id_publicacion = isset($_POST["id_publicacion"]) ? $_POST["id_publicacion"] : null;
+        $id_usuario = isset($_SESSION["usuario"]) ? $_SESSION["usuario"][0]["id"] : null;
+        
+        if($id_publicacion && $id_usuario){
+            $this->userModel->suscripcion($id_usuario,$id_publicacion);
+            header('Location: /');
+            exit;
+        } else {
+            header('Location: /');
+            exit;
+        }
+    }
+
 
 }

@@ -70,4 +70,14 @@ class UserModel
         $usuarioEliminado = $this->database->execute("DELETE FROM usuario WHERE id = $id");
         if($usuarioEliminado > 0) return $this->database->execute("DELETE FROM validacion WHERE email = '$email'");
     }
+
+
+    public function suscripcion($id_usuario,$id_publicacion){
+        $fecha_inicio = date("Y-m-d H:i:s");
+        $fecha_fin = strtotime('+1 month', strtotime($fecha_inicio));
+        $fecha_fin = date("Y-m-d H:i:s", $fecha_fin);
+
+        return $this->database->execute("INSERT INTO suscripcion (id_usuario, id_publicacion, fecha_inicio, fecha_fin) 
+                    VALUES ($id_usuario, $id_publicacion, '$fecha_inicio', '$fecha_fin')"); 
+    }
 }

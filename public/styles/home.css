@@ -52,10 +52,46 @@
   font-size: 2.2rem;
   color: white;
 }
+
 .carta-descripcion {
   font-size: 0.9rem;
   color: white;
 }
+
+.carta-descripcion {
+  font-size: 0.9rem;
+  color: white;
+}
+
+.carta-subscripcion {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 1.3rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  justify-content: end;
+  align-items: end;
+}
+
+.border-button {
+  border: 1px lightgrey solid;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.border-button:hover {
+  border: 1px black solid;
+  border-radius: 4px;
+  color: black;
+}
+
+.carta-suscripcion-precio {
+  font-size: 1.1rem;
+}
+
 .carta-sociales-container {
   display: flex;
   gap: 4px;
@@ -80,7 +116,11 @@
   padding: 32px 24px;
   user-select: none;
   text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
+
 .carta:before {
   content: "";
   position: absolute;
@@ -109,6 +149,12 @@
   color: rgba(0, 0, 0, 0.8);
   transition: all 0.3s ease-out;
 }
+
+.carta:hover .carta-subscripcion {
+  color: rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease-out;
+}
+
 .carta:hover .carta-social-link {
   filter: brightness(0);
   transition: all 0.3s ease-out;

@@ -24,7 +24,8 @@ class Router{
                 "logout" => array("roles"=> array(), "requiereLogin" => false),
                 "panelAdmin" => array("roles"=> array(1,2), "requiereLogin" => true),
                 "pdfContenidistas" => array("roles"=> array(2), "requiereLogin" => true),
-                "pdfLectores" => array("roles"=> array(2), "requiereLogin" => true)
+                "pdfLectores" => array("roles"=> array(2), "requiereLogin" => true),
+                "suscripcion" => array("roles"=> array(3), "requiereLogin" => true),
             ),
             "publicacion" => array(
                 "execute" => array("roles"=> array(1,2,3), "requiereLogin" => true),
