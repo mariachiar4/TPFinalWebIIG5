@@ -28,6 +28,9 @@
                             <a target="_blank" href='{{twitter_url}}' class="carta-social-link"><img src="/public/img/twitter.png"/></a>
                             <a target="_blank" href='{{link_url}}' class="carta-social-link"><img src="/public/img/link.png"/></a>
                         </div>
+                        <div>
+                            <div >Suscrito hasta : {{fecha_fin}}</div>
+                        </div>
                     </a>
                 {{/estaSuscripto}}
 
