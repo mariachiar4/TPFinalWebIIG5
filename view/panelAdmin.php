@@ -23,6 +23,8 @@
                 <h3 class="titulo-admin-container">Usuario</h3>
                 <a class="link-admin" href="/user/registrarContenidista">Registrar contenidista</a>
                 <a class="link-admin" href="/user/accionesUsuarios">Acciones de Usuarios</a>
+                <a class="link-admin" href="/user/reportes">Reportes</a>
+
             </div>
         {{/administrador}}
         <div class="margin-top">

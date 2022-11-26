@@ -318,6 +318,10 @@ class UserController {
             exit;
         }
     }
+    public function reportes(){
+        $suscripciones = "";
+        echo $this->render->render("view/reportes.php", array("suscripciones" => $suscripciones));
+    }
 
 
 }
