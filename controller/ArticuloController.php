@@ -184,6 +184,6 @@ class ArticuloController {
         // Render the HTML as PDF
         $dompdf->render();
         // Output the generated PDF to Browser
-        $dompdf->stream("Articulo.pdf", ['Attachment' => 1]);
+        $dompdf->stream($articulo[0]["titulo"], ['Attachment' => 1]);
     }
 }

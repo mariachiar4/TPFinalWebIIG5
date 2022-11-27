@@ -43,7 +43,16 @@ class PublicacionController {
         
         $pronostico = $this->getWeather();
 
-        echo $this->render->render("view/home.php",array("publicaciones" => $publicaciones, "pronostico" => $pronostico));
+        $usuario = isset($_SESSION["usuario"]) ? $_SESSION["usuario"][0] : "";
+        $usuario["aptoSuscripcion"] = false;
+        if($usuario != ""){
+            if($usuario["id_rol"] == 3){
+                $usuario["aptoSuscripcion"] = true;
+            }
+        }
+        var_dump($usuario);
+
+        echo $this->render->render("view/home.php",array("publicaciones" => $publicaciones, "pronostico" => $pronostico, "aptoSuscripcion" => $usuario["aptoSuscripcion"]));
     }
 
     public function getPublicacion(){
