@@ -318,10 +318,19 @@ class UserController {
             exit;
         }
     }
+
     public function reportes(){
-        $suscripciones = "";
-        echo $this->render->render("view/reportes.php", array("suscripciones" => $suscripciones));
+        echo $this->render->render("view/reportes.php");
     }
 
+    public function getReportes(){
+        $fecha_inicio = $_GET["fecha_inicio"];
+        $fecha_fin = $_GET["fecha_fin"];
 
+        if(!empty($fecha_inicio) && !empty($fecha_fin)){
+            $reportes = $this->userModel->obtenerReportes($fecha_inicio, $fecha_fin);
+            
+        }
+
+    }
 }

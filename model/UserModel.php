@@ -80,4 +80,21 @@ class UserModel
         return $this->database->execute("INSERT INTO suscripcion (id_usuario, id_publicacion, fecha_inicio, fecha_fin) 
                     VALUES ($id_usuario, $id_publicacion, '$fecha_inicio', '$fecha_fin')"); 
     }
+
+
+    public function obtenerReportes($fecha_inicio, $fecha_fin){
+        $comienzo = new DateTime($fecha_inicio);
+        $final = new DateTime($fecha_fin);
+        $final = $final->modify('+1 day');
+        
+        $intervalo = DateInterval::createFromDateString('1 day');
+        $periodo = new DatePeriod($comienzo, $intervalo, $final);
+        $labels = [];
+        foreach($periodo as $dt) {
+            array_push($labels, $dt->format("d/m/Y\n"));
+        }
+
+        
+
+    }
 }

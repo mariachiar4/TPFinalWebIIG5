@@ -27,6 +27,7 @@ class Router{
                 "pdfLectores" => array("roles"=> array(2), "requiereLogin" => true),
                 "suscripcion" => array("roles"=> array(3), "requiereLogin" => true),
                 "reportes" => array("roles"=> array(2), "requiereLogin" => true),
+                "getReportes" => array("roles"=> array(2), "requiereLogin" => true)
             ),
             "publicacion" => array(
                 "execute" => array("roles"=> array(1,2,3), "requiereLogin" => true),

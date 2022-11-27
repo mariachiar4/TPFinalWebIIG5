@@ -50,8 +50,6 @@ class PublicacionController {
                 $usuario["aptoSuscripcion"] = true;
             }
         }
-        var_dump($usuario);
-
         echo $this->render->render("view/home.php",array("publicaciones" => $publicaciones, "pronostico" => $pronostico, "aptoSuscripcion" => $usuario["aptoSuscripcion"]));
     }
 

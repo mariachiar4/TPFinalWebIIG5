@@ -169,3 +169,10 @@ body {
     margin: auto;
   }
 }
+
+.contendor-reporte {
+  max-height: 400px;
+  width: 600px;
+  margin: auto;
+  background-color: aliceblue;
+}
