@@ -328,9 +328,10 @@ class UserController {
         $fecha_fin = $_GET["fecha_fin"];
 
         if(!empty($fecha_inicio) && !empty($fecha_fin)){
-            $reportes = $this->userModel->obtenerReportes($fecha_inicio, $fecha_fin);
-            
-        }
+            $data = $this->userModel->obtenerReportes($fecha_inicio, $fecha_fin);
+            echo json_encode($data);
+        } 
+        exit;
 
     }
 }
