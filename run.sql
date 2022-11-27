@@ -176,8 +176,8 @@ CREATE TABLE `suscripcion` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `id_usuario` int(11) NOT NULL,
   `id_publicacion` int(11) NOT NULL,
-  `fecha_inicio` datetime NOT NULL,
-  `fecha_fin` datetime NOT NULL
+  `fecha_inicio` date NOT NULL, 
+  `fecha_fin` date NOT NULL  
 );
 CREATE TABLE `compra` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
