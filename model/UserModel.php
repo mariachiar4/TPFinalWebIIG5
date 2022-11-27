@@ -89,12 +89,24 @@ class UserModel
         
         $intervalo = DateInterval::createFromDateString('1 day');
         $periodo = new DatePeriod($comienzo, $intervalo, $final);
-        $labels = [];
+        $labels = ["01", "02"];
+
         foreach($periodo as $dt) {
-            array_push($labels, $dt->format("d/m/Y\n"));
+            array_push($labels, $dt->format("Y-m-d\n"));
         }
+        $data = $this->database->query("SELECT fecha_inicio , count(*) as cantidad FROM suscripcion GROUP BY fecha_inicio  ORDER BY fecha_inicio");
 
         
-
+        $array2 = array();
+        foreach($labels as $label){
+            foreach($data as $d){
+                if($label == $d["fecha_inicio"]){
+                    array_push($array2,$d["cantidad"]);
+                }else{
+                    array_push($array2,0);
+                }
+            }
+        }
+        var_dump($array2);
     }
 }
