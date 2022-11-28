@@ -16,7 +16,8 @@ class PublicacionModel
 
         return $this->database->query("SELECT p.*, IF(p.id = s.id_publicacion AND s.id_usuario = $id_usuario, true ,false) as estaSuscripto, s.fecha_fin
                                     FROM publicacion p 
-                                    LEFT JOIN suscripcion s on p.id = s.id_publicacion;");
+                                    LEFT JOIN suscripcion s on p.id = s.id_publicacion
+                                    GROUP BY p.id");
     }
 
     public function getPublicacion($id){

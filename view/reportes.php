@@ -25,7 +25,7 @@
 
 <script>
   let chart;
-  function obtenerReporte (){
+  function obtenerReporte(){
     const fecha_inicio = document.getElementById("fecha_inicio").value; 
     const fecha_fin = document.getElementById("fecha_fin").value;
 
@@ -37,7 +37,6 @@
     if (validacionOk) {
       errorElem.innerHTML = "";
       contenedorChartElem.classList.remove("oculto");
-      const formData = new FormData();
   
       let url = `/user/getReportes?fecha_inicio=${fecha_inicio}&fecha_fin=${fecha_fin}`;
   
@@ -89,5 +88,4 @@
       return true;
   }
 
- 
 </script>
